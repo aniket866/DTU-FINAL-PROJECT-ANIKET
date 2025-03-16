@@ -1,210 +1,148 @@
 
 import React from 'react';
-import MainLayout from '@/components/Layout/MainLayout';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from '@/components/ui/button';
-import { ExternalLink, FileText, Video, Tool, Download, Book, Code, BarChart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import MainLayout from '../components/Layout/MainLayout';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { FileText, Code, Youtube, BookOpen, Lightbulb, BookMarked, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+// Sample resource data
+const resourceCategories = [
+  {
+    title: "Documentation",
+    description: "Official documentation and reference guides",
+    icon: <FileText className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "React Documentation", description: "Official React documentation and guides", link: "https://react.dev" },
+      { title: "TypeScript Handbook", description: "Comprehensive TypeScript reference", link: "https://www.typescriptlang.org/docs/" },
+      { title: "MDN Web Docs", description: "Resources for web developers", link: "https://developer.mozilla.org" },
+    ]
+  },
+  {
+    title: "Code Examples",
+    description: "Real-world code examples and repositories",
+    icon: <Code className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "GitHub Repositories", description: "Top open-source React projects", link: "#" },
+      { title: "CodeSandbox Templates", description: "Ready-to-use React templates", link: "#" },
+      { title: "Stack Overflow Solutions", description: "Common coding problems solved", link: "#" },
+    ]
+  },
+  {
+    title: "Video Tutorials",
+    description: "In-depth video courses and tutorials",
+    icon: <Youtube className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "React Crash Course", description: "Complete intro to React", link: "#" },
+      { title: "Advanced TypeScript", description: "Master TypeScript features", link: "#" },
+      { title: "Full Stack Development", description: "End-to-end application building", link: "#" },
+    ]
+  },
+  {
+    title: "Books",
+    description: "Essential reading for developers",
+    icon: <BookOpen className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "React Design Patterns", description: "Best practices and patterns", link: "#" },
+      { title: "TypeScript in Action", description: "Real-world TypeScript usage", link: "#" },
+      { title: "Modern JavaScript", description: "ES6+ and beyond", link: "#" },
+    ]
+  },
+  {
+    title: "Articles",
+    description: "Blogs and articles on latest trends",
+    icon: <Lightbulb className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "State Management in 2023", description: "Modern approaches to state", link: "#" },
+      { title: "Performance Optimization", description: "Speed up your React apps", link: "#" },
+      { title: "Accessibility Guide", description: "Building inclusive applications", link: "#" },
+    ]
+  },
+  {
+    title: "Cheat Sheets",
+    description: "Quick reference guides and cheat sheets",
+    icon: <BookMarked className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "React Hooks Reference", description: "All hooks explained", link: "#" },
+      { title: "TypeScript Types", description: "Common types and usage", link: "#" },
+      { title: "CSS Grid & Flexbox", description: "Layout cheat sheet", link: "#" },
+    ]
+  }
+];
 
 const ResourcesPage = () => {
-  // Sample resources data
-  const articles = [
-    {
-      id: 1,
-      title: "How to Ace Your Technical Interview",
-      date: "June 10, 2023",
-      description: "Learn the most effective strategies for preparing and performing well in technical interviews. This guide covers common questions, problem-solving approaches, and tips for effective communication.",
-      image: "/lovable-uploads/9e8b8b2f-c2d5-4df7-822e-4e8d148604c2.png",
-      link: "/resources/technical-interview-guide"
-    },
-    {
-      id: 2,
-      title: "Building Your Tech Resume",
-      date: "July 5, 2023",
-      description: "A complete guide to crafting a standout technical resume that will catch the attention of hiring managers and help you land interviews at top tech companies.",
-      image: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=500&h=500&fit=crop",
-      link: "/resources/tech-resume-guide"
-    },
-    {
-      id: 3,
-      title: "Mastering System Design Interviews",
-      date: "August 15, 2023",
-      description: "System design interviews are critical for senior roles. This comprehensive guide breaks down the approach to tackle any system design question with confidence.",
-      image: "https://images.unsplash.com/photo-1517292987719-0369a794ec0f?w=500&h=500&fit=crop",
-      link: "/resources/system-design-guide"
-    }
-  ];
-
-  const webinars = [
-    {
-      id: 1,
-      title: "Navigating Career Transitions",
-      date: "June 25, 2023",
-      time: "2:00 PM EST",
-      description: "Join industry experts as they discuss strategies for successfully transitioning between different roles or industries. Learn how to leverage your existing skills and identify learning opportunities.",
-      image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=500&h=500&fit=crop",
-      link: "/webinars/career-transitions"
-    },
-    {
-      id: 2,
-      title: "Machine Learning Career Paths",
-      date: "July 12, 2023",
-      time: "3:00 PM EST",
-      description: "Discover the different career trajectories in the rapidly growing field of machine learning, from research positions to applied ML engineering roles.",
-      image: "https://images.unsplash.com/photo-1591453089816-0fbb999e2893?w=500&h=500&fit=crop",
-      link: "/webinars/ml-career-paths"
-    }
-  ];
-
-  const tools = [
-    {
-      id: 1,
-      title: "Resume Builder",
-      description: "Use our AI-powered resume builder to create a professional, ATS-friendly resume that highlights your skills and experiences effectively.",
-      icon: <FileText className="h-10 w-10 text-primary" />,
-      link: "/tools/resume-builder"
-    },
-    {
-      id: 2,
-      title: "Salary Calculator",
-      description: "Get accurate salary estimates based on your role, experience, location, and industry. Compare compensation packages and negotiate better offers.",
-      icon: <BarChart className="h-10 w-10 text-primary" />,
-      link: "/tools/salary-calculator"
-    },
-    {
-      id: 3,
-      title: "Interview Simulator",
-      description: "Practice with our AI interviewer that adapts to your responses, providing instant feedback to help you improve your interview skills.",
-      icon: <Video className="h-10 w-10 text-primary" />,
-      link: "/interview"
-    },
-    {
-      id: 4,
-      title: "Code Challenges",
-      description: "Sharpen your coding skills with our collection of challenges designed to prepare you for technical interviews at top companies.",
-      icon: <Code className="h-10 w-10 text-primary" />,
-      link: "/tools/code-challenges"
-    }
-  ];
-
   return (
     <MainLayout>
-      <div className="space-y-6">
-        <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">Career Resources</h1>
-          <p className="text-muted-foreground">Access our collection of articles, guides, and tools to help advance your career.</p>
+      <div className="py-8">
+        <div className="text-center mb-12">
+          <motion.h1 
+            className="text-4xl font-bold mb-4 gradient-text bg-gradient-to-r from-primary via-primary/80 to-accent"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Developer Resources
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            A curated collection of high-quality resources to help you excel in your career
+          </motion.p>
         </div>
-        
-        <Tabs defaultValue="articles" className="w-full">
-          <TabsList className="mb-6 w-full sm:w-auto">
-            <TabsTrigger value="articles" className="flex items-center gap-2">
-              <Book size={16} />
-              Articles
-            </TabsTrigger>
-            <TabsTrigger value="webinars" className="flex items-center gap-2">
-              <Video size={16} />
-              Webinars
-            </TabsTrigger>
-            <TabsTrigger value="tools" className="flex items-center gap-2">
-              <Tool size={16} />
-              Tools
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="articles" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article) => (
-                <Card key={article.id} className="overflow-hidden border border-border hover:border-primary/50 transition-all hover:-translate-y-1 duration-300">
-                  <div className="aspect-square overflow-hidden">
-                    <img 
-                      src={article.image} 
-                      alt={article.title} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardHeader>
-                    <CardTitle>{article.title}</CardTitle>
-                    <CardDescription>Published: {article.date}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="line-clamp-3">
-                      {article.description}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link to={article.link}>
-                      <Button variant="outline" className="gap-2 text-primary hover:text-primary-foreground hover:bg-primary">
-                        Read More <ExternalLink size={16} />
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="webinars" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {webinars.map((webinar) => (
-                <Card key={webinar.id} className="overflow-hidden border border-border hover:border-primary/50 transition-all hover:-translate-y-1 duration-300">
-                  <div className="aspect-square overflow-hidden">
-                    <img 
-                      src={webinar.image} 
-                      alt={webinar.title} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardHeader>
-                    <CardTitle>{webinar.title}</CardTitle>
-                    <CardDescription>{webinar.date} - {webinar.time}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="line-clamp-3">
-                      {webinar.description}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link to={webinar.link}>
-                      <Button className="gap-2">
-                        Register Now <ExternalLink size={16} />
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="tools" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {tools.map((tool) => (
-                <Card key={tool.id} className="border border-border hover:border-primary/50 transition-all hover:-translate-y-1 duration-300">
-                  <CardHeader className="flex flex-row items-start space-x-4">
-                    <div className="bg-primary/10 p-3 rounded-md">
-                      {tool.icon}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+          {resourceCategories.map((category, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="card-hover"
+            >
+              <Card className="h-full border-primary/10 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div className="p-2 rounded-lg bg-primary/10 mb-3">
+                      {category.icon}
                     </div>
-                    <div>
-                      <CardTitle>{tool.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="mb-4">
-                      {tool.description}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link to={tool.link}>
-                      <Button className="gap-2">
-                        Launch Tool <ExternalLink size={16} />
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+                    <Badge variant="outline" className="bg-primary/5">
+                      {category.resources.length} resources
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-xl">{category.title}</CardTitle>
+                  <CardDescription>{category.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <ul className="space-y-3">
+                    {category.resources.map((resource, idx) => (
+                      <li key={idx} className="border-b border-border/30 pb-3 last:border-0">
+                        <a 
+                          href={resource.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="group block hover:bg-primary/5 rounded-lg p-2 -m-2 transition-colors"
+                        >
+                          <div className="font-medium group-hover:text-primary transition-colors">{resource.title}</div>
+                          <div className="text-sm text-muted-foreground">{resource.description}</div>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button variant="outline" className="w-full group">
+                    <span>View All Resources</span>
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </MainLayout>
   );
