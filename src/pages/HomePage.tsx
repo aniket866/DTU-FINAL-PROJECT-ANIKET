@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -40,7 +39,6 @@ import {
   PenTool
 } from 'lucide-react';
 
-// Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
@@ -51,7 +49,6 @@ const fadeIn = {
 };
 
 const HomePage = () => {
-  // Career fields data with valid routes
   const careerFields = [
     { icon: <Code className="h-5 w-5" />, title: "Software Development", link: "/careers/technology", color: "bg-blue-500/10 text-blue-500" },
     { icon: <Database className="h-5 w-5" />, title: "Data Science", link: "/careers/technology", color: "bg-green-500/10 text-green-500" },
@@ -69,24 +66,50 @@ const HomePage = () => {
 
   return (
     <MainLayout fullWidth noPadding>
-      {/* Hero Section */}
       <section className="bg-background py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-center">
-            {/* Left Column - Hero Content */}
             <div className="lg:w-1/2 space-y-6">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
-                <Zap size={16} className="mr-2" />
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 5, -5, 0]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Sparkles size={16} className="mr-2" />
+                </motion.div>
                 <span className="text-sm font-medium">AI-Powered Career Growth</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Accelerate Your <span className="text-primary">Tech Career</span> With AI
-              </h1>
+              <motion.h1 
+                className="text-5xl md:text-6xl font-bold leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                Transform Your Future with{" "}
+                <motion.span 
+                  className="text-primary"
+                  animate={{ 
+                    opacity: [1, 0.7, 1],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  AI-Driven Guidance
+                </motion.span>
+              </motion.h1>
               
-              <p className="text-lg text-muted-foreground max-w-xl">
-                Get personalized career guidance, interview practice, skill analysis, and exclusive mentorship to advance your tech career journey.
-              </p>
+              <motion.p 
+                className="text-lg text-muted-foreground max-w-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Navigate your career path with precision using our AI-powered guidance system. Get personalized insights, interview preparation, and skill development recommendations.
+              </motion.p>
               
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="rounded-md px-8" asChild>
@@ -115,7 +138,6 @@ const HomePage = () => {
               </div>
             </div>
             
-            {/* Right Column - Animated Image */}
             <div className="lg:w-1/2 flex justify-center items-center">
               <AnimatedCareerImage />
             </div>
@@ -123,7 +145,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Career Fields Section */}
       <section className="bg-background/50 py-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
@@ -169,7 +190,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Success Stats Section */}
       <section className="bg-background py-12">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-wrap justify-around">
@@ -189,7 +209,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="bg-gradient-to-br from-primary/10 to-background py-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
