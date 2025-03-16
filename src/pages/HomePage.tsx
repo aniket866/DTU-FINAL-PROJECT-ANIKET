@@ -29,7 +29,20 @@ import {
   ThumbsUp,
   LifeBuoy,
   Gift,
-  Star
+  Star,
+  Code,
+  FileSearch,
+  Network,
+  Cpu,
+  Database,
+  PieChart,
+  LineChart,
+  AreaChart,
+  BarChart2,
+  GitBranch,
+  Cloud,
+  Server,
+  Shield
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -61,7 +74,7 @@ const sparkleVariants = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      repeatType: "loop",
+      repeatType: "loop", // Fixed: Using a specific allowed value
       delay: Math.random() * 2
     }
   }
@@ -271,10 +284,118 @@ const HomePage = () => {
         <div className="absolute top-1/3 right-10 transform -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
       </section>
 
-      {/* Features Section */}
+      {/* Tech Tools Grid - Small, even widgets with animations */}
+      <section className="py-16 bg-background relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div className="text-center max-w-3xl mx-auto mb-12" variants={fadeIn} initial="hidden" animate="visible">
+            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
+              <Code size={16} className="mr-2" />
+              <span className="text-sm font-medium">Tech Stack Tools</span>
+            </div>
+            <h2 className="text-3xl font-bold mb-4">Essential Developer Tools</h2>
+            <p className="text-lg text-muted-foreground">
+              Stay ahead with the most in-demand technologies in the industry
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {[
+              { icon: <Cpu className="h-5 w-5" />, title: "React.js", color: "bg-blue-500/10 text-blue-500" },
+              { icon: <Database className="h-5 w-5" />, title: "Node.js", color: "bg-green-500/10 text-green-500" },
+              { icon: <GitBranch className="h-5 w-5" />, title: "Git", color: "bg-orange-500/10 text-orange-500" },
+              { icon: <Code className="h-5 w-5" />, title: "TypeScript", color: "bg-blue-400/10 text-blue-400" },
+              { icon: <Cloud className="h-5 w-5" />, title: "AWS", color: "bg-yellow-500/10 text-yellow-500" },
+              { icon: <Database className="h-5 w-5" />, title: "MongoDB", color: "bg-green-600/10 text-green-600" },
+              { icon: <Server className="h-5 w-5" />, title: "Docker", color: "bg-blue-600/10 text-blue-600" },
+              { icon: <Shield className="h-5 w-5" />, title: "Cybersecurity", color: "bg-red-500/10 text-red-500" },
+              { icon: <LineChart className="h-5 w-5" />, title: "Data Science", color: "bg-purple-500/10 text-purple-500" },
+              { icon: <Network className="h-5 w-5" />, title: "Networking", color: "bg-indigo-500/10 text-indigo-500" },
+              { icon: <FileSearch className="h-5 w-5" />, title: "Testing", color: "bg-amber-500/10 text-amber-500" },
+              { icon: <BarChart2 className="h-5 w-5" />, title: "Analytics", color: "bg-teal-500/10 text-teal-500" },
+              { icon: <Cloud className="h-5 w-5" />, title: "Azure", color: "bg-blue-300/10 text-blue-300" },
+              { icon: <PieChart className="h-5 w-5" />, title: "Python", color: "bg-yellow-600/10 text-yellow-600" },
+              { icon: <AreaChart className="h-5 w-5" />, title: "TensorFlow", color: "bg-orange-400/10 text-orange-400" },
+            ].map((tool, index) => (
+              <motion.div
+                key={index}
+                className={`${tool.color} rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all`}
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <div className="flex flex-col items-center justify-center text-center h-full">
+                  <motion.div 
+                    className="mb-2"
+                    animate={{ rotate: [0, 10, 0, -10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, repeatType: "loop" }}
+                  >
+                    {tool.icon}
+                  </motion.div>
+                  <h3 className="text-sm font-medium">{tool.title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Small Career Resources Grid */}
+      <section className="py-16 bg-primary/5 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div className="text-center max-w-3xl mx-auto mb-12" variants={fadeIn} initial="hidden" animate="visible">
+            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
+              <Briefcase size={16} className="mr-2" />
+              <span className="text-sm font-medium">Career Resources</span>
+            </div>
+            <h2 className="text-3xl font-bold mb-4">Essential Career Tools</h2>
+            <p className="text-lg text-muted-foreground">
+              Everything you need to excel in your tech career journey
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {[
+              { icon: <Video className="h-5 w-5" />, title: "Mock Interviews", link: "/interview" },
+              { icon: <FileSearch className="h-5 w-5" />, title: "Resume Review", link: "/resources" },
+              { icon: <BarChart className="h-5 w-5" />, title: "Salary Data", link: "/resources" },
+              { icon: <Users className="h-5 w-5" />, title: "Networking Tips", link: "/resources" },
+              { icon: <Award className="h-5 w-5" />, title: "Certifications", link: "/learning" },
+              { icon: <Brain className="h-5 w-5" />, title: "Technical Quiz", link: "/assessment" },
+              { icon: <MessageSquare className="h-5 w-5" />, title: "Communication", link: "/resources" },
+              { icon: <TrendingUp className="h-5 w-5" />, title: "Growth Plans", link: "/assessment" },
+            ].map((resource, index) => (
+              <motion.div
+                key={index}
+                className="bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                whileHover={{ scale: 1.03 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <Link to={resource.link} className="block p-4 h-full">
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+                      >
+                        {resource.icon}
+                      </motion.div>
+                    </div>
+                    <h3 className="text-sm font-medium">{resource.title}</h3>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section - Converted to small even widgets */}
       <motion.section
         ref={featuresRef}
-        className="py-20 md:py-32 bg-background relative overflow-hidden"
+        className="py-20 bg-background relative overflow-hidden"
         initial="hidden"
         animate={featuresInView ? "visible" : "hidden"}
         variants={staggerChildren}
@@ -294,37 +415,47 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: <Video className="h-6 w-6 text-primary" />,
                 title: "AI Interview Simulator",
-                description: "Practice with our AI interviewer that adapts in real-time to your responses, providing instant feedback on content, delivery, and body language."
+                description: "Practice with our AI interviewer that adapts in real-time to your responses."
               },
               {
                 icon: <Brain className="h-6 w-6 text-primary" />,
                 title: "Emotion AI Analysis",
-                description: "Advanced AI evaluates your speech patterns, tone, and facial expressions to give personalized feedback for improvement."
+                description: "Advanced AI evaluates your speech patterns, tone, and facial expressions."
               },
               {
                 icon: <BarChart className="h-6 w-6 text-primary" />,
                 title: "Skill Gap Analysis",
-                description: "Our AI identifies your strengths and weaknesses, highlighting skills you need to develop for your target roles."
+                description: "AI identifies your strengths and highlights skills you need to develop."
               },
               {
                 icon: <BookOpen className="h-6 w-6 text-primary" />,
                 title: "Personalized Learning",
-                description: "Get tailored course and certification recommendations from top platforms based on your skill gaps and career goals."
+                description: "Get tailored course recommendations based on your skill gaps."
               },
               {
                 icon: <Briefcase className="h-6 w-6 text-primary" />,
                 title: "Job Matching",
-                description: "Smart job matching technology analyzes your profile to find roles that align with your skills, experience, and preferences."
+                description: "Smart job matching technology analyzes your profile for ideal roles."
               },
               {
                 icon: <Users className="h-6 w-6 text-primary" />,
                 title: "Mentor Connect",
-                description: "Connect with industry mentors who can provide guidance, answer questions, and share insights from their experience."
+                description: "Connect with industry mentors who can provide guidance."
+              },
+              {
+                icon: <MessageSquare className="h-6 w-6 text-primary" />,
+                title: "AI Chat Coach",
+                description: "Get instant career advice and coaching through our AI assistant."
+              },
+              {
+                icon: <Award className="h-6 w-6 text-primary" />,
+                title: "Skill Certifications",
+                description: "Earn verifiable credentials to showcase on your profile."
               }
             ].map((feature, index) => (
               <motion.div
@@ -339,22 +470,27 @@ const HomePage = () => {
                   }
                 }}
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                    {feature.icon}
+                <div className="p-5">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <motion.div
+                      animate={{ rotate: [0, 10, 0, -10, 0] }}
+                      transition={{ duration: 5, repeat: Infinity, repeatType: "loop" }}
+                    >
+                      {feature.icon}
+                    </motion.div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                  <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </div>
-                <div className="px-6 py-4 border-t border-border">
-                  <Button variant="ghost" size="sm" className="text-primary" asChild>
+                <div className="px-5 py-3 border-t border-border">
+                  <Button variant="ghost" size="sm" className="text-primary w-full justify-center" asChild>
                     <Link to={feature.title.includes("Interview") ? "/interview" : 
                               feature.title.includes("Skill") ? "/assessment" :
                               feature.title.includes("Learning") ? "/learning" :
                               feature.title.includes("Job") ? "/resources" :
                               feature.title.includes("Mentor") ? "/mentors" : "/"} 
                           className="flex items-center gap-1">
-                      Learn More <ChevronRight size={16} />
+                      Learn More <ChevronRight size={14} />
                     </Link>
                   </Button>
                 </div>
@@ -364,10 +500,10 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* New Enhanced Features Section */}
+      {/* Improved Career Superpowers Section with even widgets */}
       <motion.section
         ref={newFeaturesRef}
-        className="py-20 md:py-32 bg-primary/5 relative overflow-hidden"
+        className="py-20 bg-primary/5 relative overflow-hidden"
         initial="hidden"
         animate={newFeaturesInView ? "visible" : "hidden"}
         variants={staggerChildren}
@@ -384,54 +520,68 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
             {[
               {
-                icon: <Target className="h-8 w-8 text-primary" />,
+                icon: <Target className="h-6 w-6 text-primary" />,
                 title: "Career Pathing Tool",
-                description: "Map your career trajectory with precision, visualizing your path from current role to dream position with AI-recommended milestones.",
-                buttonText: "Plan Your Path",
+                description: "Map your career trajectory with precision and AI-recommended milestones.",
+                buttonText: "Plan Path",
                 link: "/assessment"
               },
               {
-                icon: <Gem className="h-8 w-8 text-primary" />,
+                icon: <Gem className="h-6 w-6 text-primary" />,
                 title: "Skills Marketplace",
-                description: "Showcase your verified skills to potential employers in our exclusive marketplace and receive job offers matching your expertise.",
-                buttonText: "Join Marketplace",
+                description: "Showcase your verified skills to potential employers in our marketplace.",
+                buttonText: "Join Now",
                 link: "/resources"
               },
               {
-                icon: <Medal className="h-8 w-8 text-primary" />,
+                icon: <Medal className="h-6 w-6 text-primary" />,
                 title: "Certification Navigator",
-                description: "Identify the most valuable certifications for your target role and access exclusive prep materials and discount vouchers.",
-                buttonText: "Explore Certifications",
+                description: "Identify the most valuable certifications for your target role.",
+                buttonText: "Explore",
                 link: "/learning"
               },
               {
-                icon: <ThumbsUp className="h-8 w-8 text-primary" />,
+                icon: <ThumbsUp className="h-6 w-6 text-primary" />,
                 title: "Resume AI Enhancer",
-                description: "Our AI reviews your resume in seconds, suggesting improvements to get past ATS systems and catch recruiters' attention.",
-                buttonText: "Enhance Resume",
+                description: "Our AI reviews your resume and suggests improvements.",
+                buttonText: "Enhance",
                 link: "/resources"
               },
               {
-                icon: <LifeBuoy className="h-8 w-8 text-primary" />,
-                title: "Career Crisis Support",
-                description: "Get emergency career advice from top coaches when facing layoffs, difficult workplace situations, or major career decisions.",
-                buttonText: "Get Support",
+                icon: <LifeBuoy className="h-6 w-6 text-primary" />,
+                title: "Crisis Support",
+                description: "Get emergency career advice from top coaches when needed.",
+                buttonText: "Support",
                 link: "/mentors"
               },
               {
-                icon: <Gift className="h-8 w-8 text-primary" />,
-                title: "Tech Salary Negotiator",
-                description: "Enter a job offer and our AI generates a custom negotiation script with market data to help you secure the best compensation.",
-                buttonText: "Negotiate Better",
+                icon: <Gift className="h-6 w-6 text-primary" />,
+                title: "Salary Negotiator",
+                description: "AI generates a custom negotiation script with market data.",
+                buttonText: "Negotiate",
                 link: "/resources"
+              },
+              {
+                icon: <TrendingUp className="h-6 w-6 text-primary" />,
+                title: "Growth Tracker",
+                description: "Monitor your progress and achievements over time.",
+                buttonText: "Track",
+                link: "/assessment"
+              },
+              {
+                icon: <Star className="h-6 w-6 text-primary" />,
+                title: "Premium Network",
+                description: "Join exclusive events with industry leaders and hiring managers.",
+                buttonText: "Connect",
+                link: "/mentors"
               }
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="glassmorphism dark:bg-black/20 rounded-xl overflow-hidden transition-all hover:shadow-xl hover:-translate-y-2"
+                className="glassmorphism dark:bg-black/20 rounded-xl overflow-hidden transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { 
@@ -441,13 +591,18 @@ const HomePage = () => {
                   }
                 }}
               >
-                <div className="p-8">
-                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                    {feature.icon}
+                <div className="p-5">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+                    >
+                      {feature.icon}
+                    </motion.div>
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                  <p className="text-muted-foreground mb-6">{feature.description}</p>
-                  <Button className="w-full" asChild>
+                  <h3 className="text-base font-bold mb-2">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
+                  <Button size="sm" className="w-full" asChild>
                     <Link to={feature.link}>
                       {feature.buttonText}
                     </Link>
@@ -508,7 +663,7 @@ const HomePage = () => {
       {/* Testimonials */}
       <motion.section
         ref={testimonialsRef}
-        className="py-20 md:py-32 bg-primary/5"
+        className="py-20 bg-primary/5"
         initial="hidden"
         animate={testimonialsInView ? "visible" : "hidden"}
         variants={staggerChildren}
@@ -525,7 +680,7 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
               {
                 name: "Sarah Johnson",
@@ -560,10 +715,12 @@ const HomePage = () => {
               >
                 <div className="flex items-center mb-4">
                   <div className="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-primary/20">
-                    <img 
+                    <motion.img 
                       src={testimonial.image} 
                       alt={testimonial.name} 
                       className="w-full h-full object-cover"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
                     />
                   </div>
                   <div>
@@ -571,7 +728,7 @@ const HomePage = () => {
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                <p className="text-muted-foreground italic">{testimonial.quote}</p>
               </motion.div>
             ))}
           </div>
@@ -581,7 +738,7 @@ const HomePage = () => {
       {/* CTA Section */}
       <motion.section
         ref={ctaRef}
-        className="py-20 md:py-32 bg-gradient-to-br from-primary/10 to-background overflow-hidden relative"
+        className="py-20 bg-gradient-to-br from-primary/10 to-background overflow-hidden relative"
         initial="hidden"
         animate={ctaInView ? "visible" : "hidden"}
         variants={fadeIn}
