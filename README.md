@@ -1,69 +1,71 @@
-# Welcome to your Lovable project
+# 🚀 CareerHubAI - AI-Powered Career Growth Platform
 
-## Project info
+![CareerHubAI Platform](https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&q=80)
 
-**URL**: https://lovable.dev/projects/3d0c37e5-dff0-4be3-996b-23af8e660b8d
+## 📋 Overview
 
-## How can I edit this code?
+CareerHubAI is an innovative platform that helps professionals navigate their career paths with precision using AI-powered guidance. Whether you're looking to advance in tech, healthcare, business, or other fields, our platform provides personalized insights, interview preparation, and skill development recommendations.
 
-There are several ways of editing your application.
+## ✨ Key Features
 
-**Use Lovable**
+- **🤖 AI Interview Simulation** - Practice with our intelligent interview bot
+- **🌍 Career Path Exploration** - Discover opportunities across various disciplines
+- **📚 Personalized Learning Paths** - Tailored educational content for skill development
+- **👥 Professional Network** - Connect with mentors and peers in your industry
+- **💡 Resume Analyzer** - Get AI-powered feedback on your resume for optimization
+- **📈 Job Market Insights** - Stay updated with real-time industry trends and salary benchmarks
+- **✅ Skill Assessment Tests** - Evaluate and certify your proficiency in various domains
+- **🎬 Portfolio Builder** - Showcase your skills and projects to potential employers
+- **🛠 Career Counseling** - Get AI-driven career advice and mentorship recommendations
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3d0c37e5-dff0-4be3-996b-23af8e660b8d) and start prompting.
+## 🖥️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+This project is built with modern web technologies:
 
-**Use your preferred IDE**
+- [React](https://reactjs.org/) - UI library
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+- [shadcn/ui](https://ui.shadcn.com/) - Component library
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## 🔧 Development Setup
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone <YOUR_REPOSITORY_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd careerhub-ai
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 📱 Screenshots
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Home Page
+![Home Page](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80)
 
-**Use GitHub Codespaces**
+### Career Paths
+![Career Paths](https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### AI Interview Practice
+![Interview Practice](https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=1200&q=80)
 
-## What technologies are used for this project?
+## 🚀 Deployment
 
-This project is built with .
+To build for production:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```sh
+npm run build
+```
 
-## How can I deploy this project?
+The build artifacts will be stored in the `dist/` directory, ready to be deployed to your hosting provider of choice.
 
-Simply open [Lovable](https://lovable.dev/projects/3d0c37e5-dff0-4be3-996b-23af8e660b8d) and click on Share -> Publish.
+## 📄 License
 
-## I want to use a custom domain - is that possible?
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
