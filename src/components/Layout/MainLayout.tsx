@@ -18,11 +18,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, className, fullWidth 
   const { themeColor } = useTheme();
   const isHomePage = location.pathname === '/';
   const isCyberTheme = themeColor === 'cyber' || themeColor === 'cyberblue';
+  const isTechBlueTheme = themeColor === 'techblue';
   
   return (
     <div className={cn(
       "flex flex-col min-h-screen",
-      isCyberTheme && "cyber-grid"
+      isCyberTheme && "cyber-grid",
+      isTechBlueTheme && "techblue-grid"
     )}>
       <Header />
       <main 

@@ -66,6 +66,37 @@
     --ring: 224.3 76.3% 48%; /* Blue */
   }
 
+  /* TechBlue theme - based on the image */
+  .theme-techblue {
+    --background: 215 60% 8%; /* Dark navy blue */
+    --foreground: 210 40% 98%;
+    
+    --card: 215 60% 12%; /* Slightly lighter navy */
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 215 60% 12%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 195 100% 50%; /* Bright light blue from image */
+    --primary-foreground: 215 60% 8%;
+    
+    --secondary: 215 40% 15%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 215 40% 15%;
+    --muted-foreground: 210 40% 75%;
+    
+    --accent: 195 100% 50%; /* Bright light blue */
+    --accent-foreground: 215 60% 8%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 215 40% 15%;
+    --input: 215 40% 15%;
+    --ring: 195 100% 50%; /* Bright light blue */
+  }
+
   /* Cyber theme (main theme) */
   .theme-cyber {
     --background: 222.2 84% 4.9%; /* Dark blue-black */
@@ -496,5 +527,46 @@
   
   .technova-pulse {
     animation: technovaPulse 3s infinite;
+  }
+
+  /* New utility classes for TechBlue theme */
+  .techblue-grid {
+    background-image: 
+      linear-gradient(rgba(30, 144, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 144, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .techblue-glow {
+    text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary));
+  }
+  
+  .techblue-card {
+    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-lg shadow-lg;
+  }
+  
+  .techblue-panel {
+    @apply bg-background/40 border border-primary/30 backdrop-blur-sm rounded-lg;
+  }
+  
+  .techblue-button {
+    @apply bg-primary text-black font-medium hover:bg-primary/90 transition-all;
+  }
+  
+  .feature-card {
+    @apply bg-card/80 backdrop-blur-sm border border-primary/10 rounded-lg p-6 hover:border-primary/30 transition-all;
+  }
+  
+  .subtle-animate {
+    animation: subtleFloat 5s ease-in-out infinite;
+  }
+  
+  @keyframes subtleFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
   }
 }

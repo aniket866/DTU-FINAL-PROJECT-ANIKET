@@ -11,7 +11,8 @@ type ThemeColor =
   'amethyst' | 'turquoise' | 'slate' | 'charcoal' | 'silver' | 'bronze' | 
   'neon-green' | 'electric-yellow' | 'plasma' | 'digital' | 'holographic' | 
   'nebula' | 'quantum' | 'celestial' | 'matrix' | 'cyber' | 'techno' | 
-  'futuristic' | 'retro-wave' | 'synthwave' | 'vapor' | 'glitch' | 'binary' | 'cyberblue';
+  'futuristic' | 'retro-wave' | 'synthwave' | 'vapor' | 'glitch' | 'binary' | 'cyberblue' |
+  'techblue';
 
 interface ThemeContextType {
   theme: Theme;
@@ -23,7 +24,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: 'dark',
-  themeColor: 'default',
+  themeColor: 'techblue',
   setTheme: () => null,
   setThemeColor: () => null,
   toggleTheme: () => null,
@@ -33,7 +34,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('dark');
-  const [themeColor, setThemeColor] = useState<ThemeColor>('default');
+  const [themeColor, setThemeColor] = useState<ThemeColor>('techblue');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
@@ -65,7 +66,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       'theme-neon-green', 'theme-electric-yellow', 'theme-plasma', 'theme-digital', 'theme-holographic',
       'theme-nebula', 'theme-quantum', 'theme-celestial', 'theme-matrix', 'theme-cyber', 'theme-techno',
       'theme-futuristic', 'theme-retro-wave', 'theme-synthwave', 'theme-vapor', 'theme-glitch', 'theme-binary',
-      'theme-cyberblue'
+      'theme-cyberblue', 'theme-techblue'
     ];
     
     document.documentElement.classList.remove(...colorClasses);

@@ -29,6 +29,8 @@ import EducationCareerPage from "./pages/careers/EducationCareerPage";
 import LegalCareerPage from "./pages/careers/LegalCareerPage";
 import EngineeringCareerPage from "./pages/careers/EngineeringCareerPage";
 import EnvironmentalCareerPage from "./pages/careers/EnvironmentalCareerPage";
+import FinanceCareerPage from "./pages/careers/FinanceCareerPage";
+import MarketingCareerPage from "./pages/careers/MarketingCareerPage";
 
 // Protected route component
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
@@ -62,6 +64,8 @@ const App = () => (
               <Route path="/careers/legal" element={<LegalCareerPage />} />
               <Route path="/careers/engineering" element={<EngineeringCareerPage />} />
               <Route path="/careers/environmental" element={<EnvironmentalCareerPage />} />
+              <Route path="/careers/finance" element={<FinanceCareerPage />} />
+              <Route path="/careers/marketing" element={<MarketingCareerPage />} />
               
               {/* Protected Routes */}
               <Route path="/profile" element={
