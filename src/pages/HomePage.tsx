@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation, useInView } from 'framer-motion';
@@ -34,14 +35,11 @@ import {
   Network,
   Cpu,
   Database,
-  PieChart,
-  LineChart,
-  AreaChart,
-  BarChart2,
   GitBranch,
   Cloud,
   Server,
-  Shield
+  Shield,
+  ArrowRight
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -73,7 +71,7 @@ const sparkleVariants = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      repeatType: "loop",
+      repeatType: "loop" as const,
       delay: Math.random() * 2
     }
   }
@@ -122,6 +120,17 @@ const HomePage = () => {
     animationDelay: `${Math.random() * 2}s`
   }));
 
+  const careerFields = [
+    { icon: <Cpu className="h-5 w-5" />, title: "Technology", link: "/careers/technology", color: "bg-blue-500/10 text-blue-500" },
+    { icon: <Database className="h-5 w-5" />, title: "Healthcare", link: "/careers/healthcare", color: "bg-green-500/10 text-green-500" },
+    { icon: <Briefcase className="h-5 w-5" />, title: "Business", link: "/careers/business", color: "bg-amber-500/10 text-amber-500" },
+    { icon: <BookOpen className="h-5 w-5" />, title: "Education", link: "/careers/education", color: "bg-purple-500/10 text-purple-500" },
+    { icon: <Shield className="h-5 w-5" />, title: "Legal", link: "/careers/legal", color: "bg-red-500/10 text-red-500" },
+    { icon: <GitBranch className="h-5 w-5" />, title: "Engineering", link: "/careers/engineering", color: "bg-orange-500/10 text-orange-500" },
+    { icon: <BarChart className="h-5 w-5" />, title: "Finance", link: "/resources", color: "bg-emerald-500/10 text-emerald-500" },
+    { icon: <Network className="h-5 w-5" />, title: "Marketing", link: "/resources", color: "bg-pink-500/10 text-pink-500" },
+  ];
+
   return (
     <MainLayout fullWidth noPadding>
       {/* Animated Background */}
@@ -145,89 +154,160 @@ const HomePage = () => {
         ))}
       </div>
 
-      {/* Hero Section - Modern with interactive elements (matched to screenshot) */}
-      <section className="relative overflow-hidden pt-20 pb-16">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center px-3 py-1 mb-6 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-              <Zap size={16} className="mr-2" />
-              <span className="text-sm font-medium">AI-Powered Career Development ✨</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-              Your Personal <span className="text-primary cyber-glow">AI Career Coach</span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-8">
-              Accelerate your career growth with personalized AI coaching,
-              interview preparation, and skill development.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <Button size="lg" asChild className="rounded-lg bg-primary hover:bg-primary/90">
-                <Link to="/interview" className="flex items-center gap-2">
-                  <Play className="h-4 w-4" />
-                  Try Interview Simulator
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="rounded-lg border-primary/20">
-                <Link to="/assessment" className="flex items-center gap-2">
-                  Analyze Your Skills
-                </Link>
-              </Button>
-            </div>
-          </div>
-
-          {/* Feature Cards - 4 Cards in a row as shown in the screenshot */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {[
-              {
-                icon: <MessageSquare className="h-6 w-6 text-primary" />,
-                title: "AI Interview Coach",
-                description: "Practice with AI-simulated interviews that provide real-time feedback."
-              },
-              {
-                icon: <Brain className="h-6 w-6 text-primary" />,
-                title: "Skill Development",
-                description: "Personalized learning recommendations based on your skill gaps."
-              },
-              {
-                icon: <BarChart className="h-6 w-6 text-primary" />,
-                title: "Market Insights",
-                description: "Real-time industry trends to help you make informed career decisions."
-              },
-              {
-                icon: <Users className="h-6 w-6 text-primary" />,
-                title: "Mentorship",
-                description: "Connect with AI mentors specialized in your industry for guidance."
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-card border border-border/30 rounded-xl overflow-hidden transition-all hover:shadow-md hover:border-primary/30"
-                whileHover={{ y: -5 }}
+      {/* Hero Section - Matched to screenshot */}
+      <section className="min-h-screen relative overflow-hidden py-8 flex flex-col lg:flex-row">
+        {/* Left side - matches screenshot */}
+        <div className="lg:w-3/5 bg-background relative z-10 px-6 lg:px-16 py-12 lg:py-24 flex flex-col justify-center">
+          <div className="max-w-3xl">
+            <div className="mb-8">
+              <motion.h1 
+                className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground">{feature.description}</p>
-                </div>
+                <span className="text-white">SMART</span><br />
+                <span className="text-primary cyber-glow">SOLUTIONS</span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-lg text-muted-foreground mb-8 max-w-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Integrated solutions in AI and Blockchain to supercharge your career growth across any industry. Enhance your decision-making with data-driven insights.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-black font-medium rounded-md px-8" asChild>
+                  <Link to="/assessment" className="flex items-center gap-2">
+                    Start Assessment <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
               </motion.div>
-            ))}
+            </div>
+            
+            {/* Technology stack icons - Matched to screenshot */}
+            <motion.div 
+              className="flex items-center gap-4 mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <div className="flex items-center gap-3 bg-background/30 p-3 rounded-lg border border-primary/20">
+                <div className="h-8 w-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Cpu className="h-4 w-4 text-blue-500" />
+                  </motion.div>
+                </div>
+                <span className="text-sm">AI & ML</span>
+              </div>
+              
+              <div className="flex items-center gap-3 bg-background/30 p-3 rounded-lg border border-primary/20">
+                <div className="h-8 w-8 rounded-full bg-purple-500/20 flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  >
+                    <GitBranch className="h-4 w-4 text-purple-500" />
+                  </motion.div>
+                </div>
+                <span className="text-sm">Blockchain</span>
+              </div>
+            </motion.div>
+            
+            {/* Stats boxes - Matched to screenshot */}
+            <div className="grid grid-cols-2 gap-6 mt-12">
+              <motion.div 
+                className="border border-primary/20 bg-background/50 p-5 rounded-lg"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs text-primary">24 hrs</span>
+                  <div className="h-1 w-1 rounded-full bg-primary"></div>
+                </div>
+                <p className="text-xs text-muted-foreground">Response Time</p>
+              </motion.div>
+              
+              <motion.div 
+                className="border border-primary/20 bg-background/50 p-5 rounded-lg"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs text-primary">99.99%</span>
+                  <div className="h-1 w-1 rounded-full bg-primary"></div>
+                </div>
+                <p className="text-xs text-muted-foreground">Platform Uptime</p>
+              </motion.div>
+            </div>
+            
+            {/* Stats number - Matched to screenshot */}
+            <motion.div 
+              className="mt-12 pl-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+            >
+              <h3 className="text-5xl font-bold text-primary mb-2">124<span className="text-xl">k</span></h3>
+              <p className="text-xs text-muted-foreground">Professionals improved their career with our AI solutions in the last 12 months</p>
+            </motion.div>
           </div>
         </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-1/3 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-30"></div>
+        
+        {/* Right side - AI augmented face image - Similar to screenshot */}
+        <div className="lg:w-2/5 relative">
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-b from-primary/20 to-background z-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          />
+          <div className="relative z-10 h-full flex items-center justify-center overflow-hidden">
+            <motion.img 
+              src="/lovable-uploads/2140e25e-18ab-48b2-a10a-6ddf51598998.png"
+              alt="AI-augmented professional"
+              className="object-cover h-full w-full"
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+            />
+          </div>
+          
+          {/* Right side panels */}
+          <motion.div
+            className="absolute top-8 right-8 bg-card/10 backdrop-blur-lg border border-primary/20 rounded-lg p-6 w-64"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h4 className="text-sm font-medium">Light</h4>
+              <div className="flex gap-2 items-center">
+                <div className="h-4 w-4 rounded-full bg-primary"></div>
+                <div className="h-4 w-4 rounded-full bg-white/20"></div>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold">Empowering Education</h3>
+              <p className="text-xs text-muted-foreground">with Digital Tech Tools</p>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Tech Tools Grid - Small, even widgets with animations */}
+      {/* Career Fields Grid - Redesigned to match screenshot style */}
       <section className="py-16 bg-background/30 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div className="text-center max-w-3xl mx-auto mb-12" variants={fadeIn} initial="hidden" animate="visible">
@@ -235,30 +315,17 @@ const HomePage = () => {
               <Code size={16} className="mr-2" />
               <span className="text-sm font-medium">Career Fields</span>
             </div>
-            <h2 className="text-3xl font-bold mb-4">Explore Multiple Career Paths</h2>
+            <h2 className="text-3xl font-bold mb-4">Explore Career Paths</h2>
             <p className="text-lg text-muted-foreground">
               Our AI coach helps professionals in various industries develop their careers
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              { icon: <Cpu className="h-5 w-5" />, title: "Technology", link: "/careers/technology", color: "bg-blue-500/10 text-blue-500" },
-              { icon: <Database className="h-5 w-5" />, title: "Healthcare", link: "/careers/healthcare", color: "bg-green-500/10 text-green-500" },
-              { icon: <Briefcase className="h-5 w-5" />, title: "Business", link: "/careers/business", color: "bg-amber-500/10 text-amber-500" },
-              { icon: <BookOpen className="h-5 w-5" />, title: "Education", link: "/careers/education", color: "bg-purple-500/10 text-purple-500" },
-              { icon: <Shield className="h-5 w-5" />, title: "Legal", link: "/careers/legal", color: "bg-red-500/10 text-red-500" },
-              { icon: <GitBranch className="h-5 w-5" />, title: "Engineering", link: "/careers/engineering", color: "bg-orange-500/10 text-orange-500" },
-              { icon: <LineChart className="h-5 w-5" />, title: "Finance", link: "/resources", color: "bg-emerald-500/10 text-emerald-500" },
-              { icon: <Network className="h-5 w-5" />, title: "Marketing", link: "/resources", color: "bg-pink-500/10 text-pink-500" },
-              { icon: <Cloud className="h-5 w-5" />, title: "Science", link: "/resources", color: "bg-indigo-500/10 text-indigo-500" },
-              { icon: <Server className="h-5 w-5" />, title: "Government", link: "/resources", color: "bg-slate-500/10 text-slate-500" },
-              { icon: <FileSearch className="h-5 w-5" />, title: "Research", link: "/resources", color: "bg-cyan-500/10 text-cyan-500" },
-              { icon: <BarChart2 className="h-5 w-5" />, title: "Environment", link: "/careers/environmental", color: "bg-teal-500/10 text-teal-500" },
-            ].map((field, index) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {careerFields.map((field, index) => (
               <motion.div
                 key={index}
-                className={`${field.color} rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all`}
+                className={`${field.color} rounded-xl p-5 border border-white/10 shadow-sm hover:shadow-md transition-all`}
                 whileHover={{ y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -267,13 +334,17 @@ const HomePage = () => {
                 <Link to={field.link} className="block">
                   <div className="flex flex-col items-center justify-center text-center h-full">
                     <motion.div 
-                      className="mb-2"
+                      className="mb-3"
                       animate={{ rotate: [0, 10, 0, -10, 0] }}
-                      transition={{ duration: 5, repeat: Infinity, repeatType: "loop" }}
+                      transition={{ duration: 5, repeat: Infinity, repeatType: "loop" as const }}
                     >
                       {field.icon}
                     </motion.div>
-                    <h3 className="text-sm font-medium">{field.title}</h3>
+                    <h3 className="text-base font-medium">{field.title}</h3>
+                    <div className="flex items-center mt-2 text-xs text-muted-foreground">
+                      <span>Explore</span>
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </div>
                   </div>
                 </Link>
               </motion.div>
@@ -282,82 +353,21 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Small Career Resources Grid */}
+      {/* Core Feature Cards - Redesigned to match screenshot style */}
       <section className="py-16 bg-background relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div className="text-center max-w-3xl mx-auto mb-12" variants={fadeIn} initial="hidden" animate="visible">
             <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-              <Briefcase size={16} className="mr-2" />
-              <span className="text-sm font-medium">Career Resources</span>
-            </div>
-            <h2 className="text-3xl font-bold mb-4">Essential Career Tools</h2>
-            <p className="text-lg text-muted-foreground">
-              Everything you need to excel in your career journey
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {[
-              { icon: <Video className="h-5 w-5" />, title: "Mock Interviews", link: "/interview" },
-              { icon: <FileSearch className="h-5 w-5" />, title: "Resume Review", link: "/resources" },
-              { icon: <BarChart className="h-5 w-5" />, title: "Salary Data", link: "/resources" },
-              { icon: <Users className="h-5 w-5" />, title: "Networking Tips", link: "/resources" },
-              { icon: <Award className="h-5 w-5" />, title: "Certifications", link: "/learning" },
-              { icon: <Brain className="h-5 w-5" />, title: "Technical Quiz", link: "/assessment" },
-              { icon: <MessageSquare className="h-5 w-5" />, title: "Communication", link: "/resources" },
-              { icon: <TrendingUp className="h-5 w-5" />, title: "Growth Plans", link: "/assessment" },
-            ].map((resource, index) => (
-              <motion.div
-                key={index}
-                className="bg-card border border-border/30 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
-                whileHover={{ scale: 1.03 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <Link to={resource.link} className="block p-4 h-full">
-                  <div className="flex flex-col items-center justify-center text-center">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-                      <motion.div
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
-                      >
-                        {resource.icon}
-                      </motion.div>
-                    </div>
-                    <h3 className="text-sm font-medium">{resource.title}</h3>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section - Converted to small even widgets */}
-      <motion.section
-        ref={featuresRef}
-        className="py-20 bg-background/30 relative overflow-hidden"
-        initial="hidden"
-        animate={featuresInView ? "visible" : "hidden"}
-        variants={staggerChildren}
-      >
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl opacity-50"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div className="text-center max-w-3xl mx-auto mb-16" variants={fadeIn}>
-            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
               <Zap size={16} className="mr-2" />
-              <span className="text-sm font-medium">Powerful AI Tools</span>
+              <span className="text-sm font-medium">Core Features</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">AI-Powered Career Acceleration</h2>
-            <p className="text-xl text-muted-foreground">
-              Our advanced AI technology provides personalized guidance to help you excel in your career.
+            <h2 className="text-3xl font-bold mb-4">Smart Career Tools</h2>
+            <p className="text-lg text-muted-foreground">
+              Cutting-edge capabilities to accelerate your professional journey
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
               {
                 icon: <Video className="h-6 w-6 text-primary" />,
@@ -366,43 +376,33 @@ const HomePage = () => {
               },
               {
                 icon: <Brain className="h-6 w-6 text-primary" />,
-                title: "Emotion AI Analysis",
-                description: "Advanced AI evaluates your speech patterns, tone, and facial expressions."
+                title: "Skill Analysis",
+                description: "Advanced AI evaluates your skills and suggests improvements."
               },
               {
                 icon: <BarChart className="h-6 w-6 text-primary" />,
-                title: "Skill Gap Analysis",
-                description: "AI identifies your strengths and highlights skills you need to develop."
+                title: "Market Insights",
+                description: "Stay ahead with real-time industry trends and job market analysis."
               },
               {
-                icon: <BookOpen className="h-6 w-6 text-primary" />,
-                title: "Personalized Learning",
-                description: "Get tailored course recommendations based on your skill gaps."
+                icon: <Cpu className="h-6 w-6 text-primary" />,
+                title: "AI Career Pathing",
+                description: "Intelligent mapping of your optimal career trajectory."
               },
               {
-                icon: <Briefcase className="h-6 w-6 text-primary" />,
-                title: "Job Matching",
-                description: "Smart job matching technology analyzes your profile for ideal roles."
+                icon: <Shield className="h-6 w-6 text-primary" />,
+                title: "Data Security",
+                description: "Enterprise-grade encryption and privacy for your career data."
               },
               {
-                icon: <Users className="h-6 w-6 text-primary" />,
-                title: "Mentor Connect",
-                description: "Connect with industry mentors who can provide guidance."
-              },
-              {
-                icon: <MessageSquare className="h-6 w-6 text-primary" />,
-                title: "AI Chat Coach",
-                description: "Get instant career advice and coaching through our AI assistant."
-              },
-              {
-                icon: <Award className="h-6 w-6 text-primary" />,
-                title: "Skill Certifications",
-                description: "Earn verifiable credentials to showcase on your profile."
+                icon: <Cloud className="h-6 w-6 text-primary" />,
+                title: "Cloud Integration",
+                description: "Seamlessly connect with your existing professional tools."
               }
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-card border border-border/30 rounded-xl overflow-hidden transition-all hover:shadow-md hover:-translate-y-1 card-hover group"
+                className="bg-background/50 border border-primary/20 rounded-xl overflow-hidden transition-all group"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { 
@@ -412,158 +412,28 @@ const HomePage = () => {
                   }
                 }}
               >
-                <div className="p-5">
+                <div className="p-6">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                     <motion.div
                       animate={{ rotate: [0, 10, 0, -10, 0] }}
-                      transition={{ duration: 5, repeat: Infinity, repeatType: "loop" }}
-                    >
-                      {feature.icon}
-                    </motion.div>
-                  </div>
-                  <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground">{feature.description}</p>
-                </div>
-                <div className="px-5 py-3 border-t border-border">
-                  <Button variant="ghost" size="sm" className="text-primary w-full justify-center" asChild>
-                    <Link to={feature.title.includes("Interview") ? "/interview" : 
-                              feature.title.includes("Skill") ? "/assessment" :
-                              feature.title.includes("Learning") ? "/learning" :
-                              feature.title.includes("Job") ? "/resources" :
-                              feature.title.includes("Mentor") ? "/mentors" : "/"} 
-                          className="flex items-center gap-1">
-                      Learn More <ChevronRight size={14} />
-                    </Link>
-                  </Button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Improved Career Superpowers Section with even widgets */}
-      <motion.section
-        ref={newFeaturesRef}
-        className="py-20 bg-primary/5 relative overflow-hidden"
-        initial="hidden"
-        animate={newFeaturesInView ? "visible" : "hidden"}
-        variants={staggerChildren}
-      >
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div className="text-center max-w-3xl mx-auto mb-16" variants={fadeIn}>
-            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-              <Rocket size={16} className="mr-2" />
-              <span className="text-sm font-medium">Career Superpowers</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Unlock Your Full Potential</h2>
-            <p className="text-xl text-muted-foreground">
-              Discover powerful tools designed to transform your career journey and maximize your success.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-            {[
-              {
-                icon: <Target className="h-6 w-6 text-primary" />,
-                title: "Career Pathing Tool",
-                description: "Map your career trajectory with precision and AI-recommended milestones.",
-                buttonText: "Plan Path",
-                link: "/assessment"
-              },
-              {
-                icon: <Gem className="h-6 w-6 text-primary" />,
-                title: "Skills Marketplace",
-                description: "Showcase your verified skills to potential employers in our marketplace.",
-                buttonText: "Join Now",
-                link: "/resources"
-              },
-              {
-                icon: <Medal className="h-6 w-6 text-primary" />,
-                title: "Certification Navigator",
-                description: "Identify the most valuable certifications for your target role.",
-                buttonText: "Explore",
-                link: "/learning"
-              },
-              {
-                icon: <ThumbsUp className="h-6 w-6 text-primary" />,
-                title: "Resume AI Enhancer",
-                description: "Our AI reviews your resume and suggests improvements.",
-                buttonText: "Enhance",
-                link: "/resources"
-              },
-              {
-                icon: <LifeBuoy className="h-6 w-6 text-primary" />,
-                title: "Crisis Support",
-                description: "Get emergency career advice from top coaches when needed.",
-                buttonText: "Support",
-                link: "/mentors"
-              },
-              {
-                icon: <Gift className="h-6 w-6 text-primary" />,
-                title: "Salary Negotiator",
-                description: "AI generates a custom negotiation script with market data.",
-                buttonText: "Negotiate",
-                link: "/resources"
-              },
-              {
-                icon: <TrendingUp className="h-6 w-6 text-primary" />,
-                title: "Growth Tracker",
-                description: "Monitor your progress and achievements over time.",
-                buttonText: "Track",
-                link: "/assessment"
-              },
-              {
-                icon: <Star className="h-6 w-6 text-primary" />,
-                title: "Premium Network",
-                description: "Join exclusive events with industry leaders and hiring managers.",
-                buttonText: "Connect",
-                link: "/mentors"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="glassmorphism dark:bg-black/20 rounded-xl overflow-hidden transition-all shadow-sm hover:shadow-md hover:-translate-y-1"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { duration: 0.5, delay: index * 0.1 }
-                  }
-                }}
-              >
-                <div className="p-5">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+                      transition={{ duration: 5, repeat: Infinity, repeatType: "loop" as const }}
                     >
                       {feature.icon}
                     </motion.div>
                   </div>
                   <h3 className="text-base font-bold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
-                  <Button size="sm" className="w-full" asChild>
-                    <Link to={feature.link}>
-                      {feature.buttonText}
-                    </Link>
-                  </Button>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-      </motion.section>
+      </section>
 
       {/* Stats Section */}
       <motion.section
         ref={statsRef}
-        className="py-20 bg-background relative overflow-hidden"
+        className="py-16 bg-background/50 relative overflow-hidden"
         initial="hidden"
         animate={statsInView ? "visible" : "hidden"}
         variants={fadeIn}
@@ -588,7 +458,7 @@ const HomePage = () => {
                   }
                 }}
               >
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2 neon-glow">{stat.value}</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2 cyber-glow">{stat.value}</div>
                 <div className="text-muted-foreground">{stat.label}</div>
               </motion.div>
             ))}
@@ -602,81 +472,6 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* Testimonials */}
-      <motion.section
-        ref={testimonialsRef}
-        className="py-20 bg-primary/5"
-        initial="hidden"
-        animate={testimonialsInView ? "visible" : "hidden"}
-        variants={staggerChildren}
-      >
-        <div className="container mx-auto px-4">
-          <motion.div className="text-center max-w-3xl mx-auto mb-16" variants={fadeIn}>
-            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-              <Smile size={16} className="mr-2" />
-              <span className="text-sm font-medium">Success Stories</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">From Our Community</h2>
-            <p className="text-xl text-muted-foreground">
-              See how professionals like you have advanced their careers with our AI coaching platform.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "Senior Product Manager at Google",
-                image: "https://randomuser.me/api/portraits/women/17.jpg",
-                quote: "The AI interview practice was incredibly accurate. After just 5 sessions, I felt confident in my actual interviews and landed my dream job at Google."
-              },
-              {
-                name: "Michael Chen",
-                role: "Software Engineer at Microsoft",
-                image: "https://randomuser.me/api/portraits/men/32.jpg",
-                quote: "The skill gap analysis identified exactly what I needed to learn. The recommended courses helped me upskill quickly and stand out in a competitive job market."
-              },
-              {
-                name: "Jessica Rivera",
-                role: "Marketing Director at Adobe",
-                image: "https://randomuser.me/api/portraits/women/63.jpg",
-                quote: "The AI feedback on my communication style was eye-opening. It helped me refine my presentation skills which has been crucial for my leadership role."
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                className="glassmorphism dark:bg-black/20 rounded-xl p-6 hover:shadow-md transition-all hover:-translate-y-1 border border-white/10"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { duration: 0.5, delay: index * 0.1 }
-                  }
-                }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-primary/20">
-                    <motion.img 
-                      src={testimonial.image} 
-                      alt={testimonial.name} 
-                      className="w-full h-full object-cover"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground italic">{testimonial.quote}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
       {/* CTA Section */}
       <motion.section
         ref={ctaRef}
@@ -687,12 +482,12 @@ const HomePage = () => {
       >
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to accelerate your tech career?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to accelerate your career?</h2>
             <p className="text-xl text-muted-foreground mb-8">
               Join thousands of professionals who are using AI to improve their skills, ace interviews, and land their dream jobs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="rounded-lg shadow-lg">
+              <Button size="lg" asChild className="rounded-lg shadow-lg bg-primary text-black hover:bg-primary/90">
                 <Link to="/register">Start Free Trial</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="rounded-lg">
@@ -702,26 +497,6 @@ const HomePage = () => {
                 </Link>
               </Button>
             </div>
-            <motion.div 
-              className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/10 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="flex items-center mb-4">
-                <Star className="h-6 w-6 text-yellow-500 mr-2" />
-                <h3 className="font-bold text-lg">Weekly Career Insights</h3>
-              </div>
-              <p className="text-muted-foreground mb-4">Get weekly AI-curated articles, job opportunities, and tech events directly in your inbox.</p>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="rounded-lg border px-4 py-2 flex-grow bg-background"
-                />
-                <Button>Subscribe</Button>
-              </div>
-            </motion.div>
           </div>
         </div>
 

@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -127,6 +126,37 @@
     --border: 217 45% 15%;
     --input: 217 45% 15%;
     --ring: 160 100% 50%; /* Bright green */
+  }
+
+  /* New TechNova theme - based on the image */
+  .theme-technova {
+    --background: 220 40% 5%; /* Deep blue-black background */
+    --foreground: 210 40% 98%;
+    
+    --card: 220 40% 7%; /* Dark card background */
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 220 40% 7%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 150 100% 50%; /* Bright green from the image */
+    --primary-foreground: 220 40% 5%;
+    
+    --secondary: 220 40% 15%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 220 40% 15%;
+    --muted-foreground: 210 40% 70%;
+    
+    --accent: 150 100% 50%; /* Bright green */
+    --accent-foreground: 220 40% 5%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 220 40% 15%;
+    --input: 220 40% 15%;
+    --ring: 150 100% 50%; /* Bright green */
   }
 
   /* Dark mode theme variants */
@@ -418,5 +448,53 @@
     to {
       transform: rotate(360deg);
     }
+  }
+
+  /* New utility classes for TechNova theme */
+  .technova-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 170, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 170, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .technova-glow {
+    text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary));
+  }
+  
+  .technova-border {
+    @apply border border-primary/30 rounded-md overflow-hidden;
+  }
+  
+  .technova-card {
+    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-lg;
+  }
+  
+  .technova-panel {
+    @apply bg-black/40 border border-primary/30 backdrop-blur-sm rounded-lg;
+  }
+  
+  .technova-button {
+    @apply bg-primary text-black font-medium hover:bg-primary/90 transition-all;
+  }
+  
+  .technova-input {
+    @apply bg-black/50 border border-primary/30 text-white rounded-md focus:ring-primary/50 focus:border-primary/50;
+  }
+
+  /* Specific animation for TechNova */
+  @keyframes technovaPulse {
+    0%, 100% {
+      opacity: 0.7;
+      box-shadow: 0 0 10px hsl(var(--primary));
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 20px hsl(var(--primary));
+    }
+  }
+  
+  .technova-pulse {
+    animation: technovaPulse 3s infinite;
   }
 }
