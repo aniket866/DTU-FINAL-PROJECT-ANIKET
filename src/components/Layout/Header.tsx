@@ -82,6 +82,7 @@ const Header = () => {
     { name: 'Learning Paths', path: '/learning', icon: <BookOpen className="h-4 w-4" /> },
     { name: 'Find Mentors', path: '/mentors', icon: <Users className="h-4 w-4" /> },
     { name: 'Resources', path: '/resources', icon: <Youtube className="h-4 w-4" /> },
+    { name: 'Motivation', path: '/motivation', icon: <Sparkles className="h-4 w-4" /> },
   ];
 
   // Organized theme colors by category for better selection
@@ -144,7 +145,7 @@ const Header = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'backdrop-blur-xl bg-background/70 dark:bg-black/70 py-3 shadow-md border-b border-border/20' 
+          ? 'backdrop-blur-xl bg-background/70 dark:bg-black/70 py-3 shadow-md' 
           : 'bg-transparent py-5'
       }`}
     >
@@ -155,7 +156,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <motion.nav 
-          className="hidden md:flex items-center gap-1"
+          className="hidden md:flex items-center gap-1 mx-auto"
           initial="hidden"
           animate="visible"
           variants={navVariants}

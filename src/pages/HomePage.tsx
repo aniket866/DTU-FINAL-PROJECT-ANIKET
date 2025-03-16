@@ -20,7 +20,16 @@ import {
   MessageSquare,
   CheckCircle2,
   Play,
-  Youtube
+  Youtube,
+  Sparkles,
+  Rocket,
+  Target,
+  Gem,
+  Medal,
+  ThumbsUp,
+  LifeBuoy,
+  Gift,
+  Star
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -44,14 +53,16 @@ const staggerChildren = {
   }
 };
 
-const pulseAnimation = {
-  initial: { scale: 1 },
+const sparkleVariants = {
+  initial: { opacity: 0, scale: 0 },
   animate: {
-    scale: [1, 1.05, 1],
-    transition: { 
-      duration: 2, 
+    opacity: [0, 1, 0],
+    scale: [0, 1, 0],
+    transition: {
+      duration: 2,
       repeat: Infinity,
-      repeatType: "mirror" 
+      repeatType: "loop",
+      delay: Math.random() * 2
     }
   }
 };
@@ -61,14 +72,14 @@ const HomePage = () => {
   const featuresRef = useRef(null);
   const statsRef = useRef(null);
   const testimonialsRef = useRef(null);
-  const motivationRef = useRef(null);
   const ctaRef = useRef(null);
+  const newFeaturesRef = useRef(null);
   
   const featuresInView = useInView(featuresRef, { once: true });
   const statsInView = useInView(statsRef, { once: true });
   const testimonialsInView = useInView(testimonialsRef, { once: true });
-  const motivationInView = useInView(motivationRef, { once: true });
   const ctaInView = useInView(ctaRef, { once: true });
+  const newFeaturesInView = useInView(newFeaturesRef, { once: true });
 
   useEffect(() => {
     if (featuresInView) {
@@ -76,39 +87,38 @@ const HomePage = () => {
     }
   }, [controls, featuresInView]);
 
-  // Motivation videos data
-  const motivationVideos = [
-    {
-      id: 1,
-      title: "How to Ace Your Next Tech Interview",
-      thumbnail: "https://img.youtube.com/vi/PJBNkCRNRH4/maxresdefault.jpg",
-      youtubeId: "PJBNkCRNRH4",
-      duration: "15:24",
-      views: "1.2M",
-      author: "Tech Career Coach"
-    },
-    {
-      id: 2,
-      title: "5 Steps to Land Your Dream Tech Job",
-      thumbnail: "https://img.youtube.com/vi/waEsGu--9P8/maxresdefault.jpg",
-      youtubeId: "waEsGu--9P8",
-      duration: "12:45",
-      views: "987K",
-      author: "Career Insights"
-    },
-    {
-      id: 3,
-      title: "The Future of AI in Career Development",
-      thumbnail: "https://img.youtube.com/vi/ORHv8yKGUHU/maxresdefault.jpg",
-      youtubeId: "ORHv8yKGUHU",
-      duration: "18:32",
-      views: "1.5M",
-      author: "AI Career Path"
-    }
-  ];
+  // Create random sparkles
+  const sparkles = Array.from({ length: 20 }).map((_, i) => ({
+    id: i,
+    size: Math.random() * 8 + 4,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    animationDelay: `${Math.random() * 2}s`
+  }));
 
   return (
     <MainLayout fullWidth noPadding>
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {sparkles.map((sparkle) => (
+          <motion.div
+            key={sparkle.id}
+            className="absolute text-primary"
+            style={{ 
+              left: sparkle.left, 
+              top: sparkle.top,
+              width: sparkle.size,
+              height: sparkle.size
+            }}
+            variants={sparkleVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <Sparkles size={sparkle.size} />
+          </motion.div>
+        ))}
+      </div>
+
       {/* Hero Section - Modern with interactive elements */}
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background pt-32 pb-20 md:pt-40 md:pb-32">
         <div className="container mx-auto px-4 relative z-10">
@@ -354,10 +364,109 @@ const HomePage = () => {
         </div>
       </motion.section>
 
+      {/* New Enhanced Features Section */}
+      <motion.section
+        ref={newFeaturesRef}
+        className="py-20 md:py-32 bg-primary/5 relative overflow-hidden"
+        initial="hidden"
+        animate={newFeaturesInView ? "visible" : "hidden"}
+        variants={staggerChildren}
+      >
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div className="text-center max-w-3xl mx-auto mb-16" variants={fadeIn}>
+            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
+              <Rocket size={16} className="mr-2" />
+              <span className="text-sm font-medium">Career Superpowers</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Unlock Your Full Potential</h2>
+            <p className="text-xl text-muted-foreground">
+              Discover powerful tools designed to transform your career journey and maximize your success.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Target className="h-8 w-8 text-primary" />,
+                title: "Career Pathing Tool",
+                description: "Map your career trajectory with precision, visualizing your path from current role to dream position with AI-recommended milestones.",
+                buttonText: "Plan Your Path",
+                link: "/assessment"
+              },
+              {
+                icon: <Gem className="h-8 w-8 text-primary" />,
+                title: "Skills Marketplace",
+                description: "Showcase your verified skills to potential employers in our exclusive marketplace and receive job offers matching your expertise.",
+                buttonText: "Join Marketplace",
+                link: "/resources"
+              },
+              {
+                icon: <Medal className="h-8 w-8 text-primary" />,
+                title: "Certification Navigator",
+                description: "Identify the most valuable certifications for your target role and access exclusive prep materials and discount vouchers.",
+                buttonText: "Explore Certifications",
+                link: "/learning"
+              },
+              {
+                icon: <ThumbsUp className="h-8 w-8 text-primary" />,
+                title: "Resume AI Enhancer",
+                description: "Our AI reviews your resume in seconds, suggesting improvements to get past ATS systems and catch recruiters' attention.",
+                buttonText: "Enhance Resume",
+                link: "/resources"
+              },
+              {
+                icon: <LifeBuoy className="h-8 w-8 text-primary" />,
+                title: "Career Crisis Support",
+                description: "Get emergency career advice from top coaches when facing layoffs, difficult workplace situations, or major career decisions.",
+                buttonText: "Get Support",
+                link: "/mentors"
+              },
+              {
+                icon: <Gift className="h-8 w-8 text-primary" />,
+                title: "Tech Salary Negotiator",
+                description: "Enter a job offer and our AI generates a custom negotiation script with market data to help you secure the best compensation.",
+                buttonText: "Negotiate Better",
+                link: "/resources"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="glassmorphism dark:bg-black/20 rounded-xl overflow-hidden transition-all hover:shadow-xl hover:-translate-y-2"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { duration: 0.5, delay: index * 0.1 }
+                  }
+                }}
+              >
+                <div className="p-8">
+                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
+                  <p className="text-muted-foreground mb-6">{feature.description}</p>
+                  <Button className="w-full" asChild>
+                    <Link to={feature.link}>
+                      {feature.buttonText}
+                    </Link>
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+      </motion.section>
+
       {/* Stats Section */}
       <motion.section
         ref={statsRef}
-        className="py-20 bg-primary/5 relative overflow-hidden"
+        className="py-20 bg-background relative overflow-hidden"
         initial="hidden"
         animate={statsInView ? "visible" : "hidden"}
         variants={fadeIn}
@@ -393,104 +502,6 @@ const HomePage = () => {
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary rounded-full blur-3xl"></div>
-        </div>
-      </motion.section>
-
-      {/* Motivation Videos Section */}
-      <motion.section
-        ref={motivationRef}
-        className="py-20 md:py-32 bg-background"
-        initial="hidden"
-        animate={motivationInView ? "visible" : "hidden"}
-        variants={staggerChildren}
-      >
-        <div className="container mx-auto px-4">
-          <motion.div className="text-center max-w-3xl mx-auto mb-16" variants={fadeIn}>
-            <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-              <Youtube size={16} className="mr-2" />
-              <span className="text-sm font-medium">Career Insights</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Tech Career Motivation</h2>
-            <p className="text-xl text-muted-foreground">
-              Learn from industry experts and get inspired by success stories to fuel your career growth.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {motivationVideos.map((video, index) => (
-              <motion.div
-                key={video.id}
-                className="bg-background border border-border rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { duration: 0.5, delay: index * 0.1 }
-                  }
-                }}
-              >
-                <div className="relative">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title} 
-                    className="w-full aspect-video object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                    <a 
-                      href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-16 h-16 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
-                    >
-                      <Play fill="white" className="ml-1" />
-                    </a>
-                  </div>
-                  <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                    {video.duration}
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2 line-clamp-2">{video.title}</h3>
-                  <div className="flex justify-between items-center text-sm text-muted-foreground">
-                    <span>{video.author}</span>
-                    <span>{video.views} views</span>
-                  </div>
-                  <Button variant="outline" size="sm" className="w-full mt-4" asChild>
-                    <a 
-                      href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <Youtube size={16} />
-                      Watch Now
-                    </a>
-                  </Button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <motion.div 
-            className="text-center mt-12"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { delay: 0.6 } }
-            }}
-          >
-            <Button asChild variant="outline" className="border-primary/20">
-              <a 
-                href="https://www.youtube.com/results?search_query=tech+career+advice"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
-              >
-                <Youtube className="h-4 w-4" />
-                Explore More Videos
-              </a>
-            </Button>
-          </motion.div>
         </div>
       </motion.section>
 
@@ -592,6 +603,26 @@ const HomePage = () => {
                 </Link>
               </Button>
             </div>
+            <motion.div 
+              className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/10 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <div className="flex items-center mb-4">
+                <Star className="h-6 w-6 text-yellow-500 mr-2" />
+                <h3 className="font-bold text-lg">Weekly Career Insights</h3>
+              </div>
+              <p className="text-muted-foreground mb-4">Get weekly AI-curated articles, job opportunities, and tech events directly in your inbox.</p>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="rounded-lg border px-4 py-2 flex-grow bg-background"
+                />
+                <Button>Subscribe</Button>
+              </div>
+            </motion.div>
           </div>
         </div>
 
