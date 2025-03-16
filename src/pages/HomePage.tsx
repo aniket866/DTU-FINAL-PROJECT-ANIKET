@@ -5,7 +5,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import MainLayout from '@/components/Layout/MainLayout';
 import { Button } from '@/components/ui/button';
 import { 
-  Robot, 
+  Bot, 
   BookOpen, 
   Briefcase, 
   Brain, 
@@ -51,7 +51,7 @@ const pulseAnimation = {
     transition: { 
       duration: 2, 
       repeat: Infinity,
-      repeatType: "reverse" 
+      repeatType: "mirror" 
     }
   }
 };
@@ -64,11 +64,11 @@ const HomePage = () => {
   const motivationRef = useRef(null);
   const ctaRef = useRef(null);
   
-  const featuresInView = useInView(featuresRef, { once: true, threshold: 0.1 });
-  const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
-  const testimonialsInView = useInView(testimonialsRef, { once: true, threshold: 0.1 });
-  const motivationInView = useInView(motivationRef, { once: true, threshold: 0.1 });
-  const ctaInView = useInView(ctaRef, { once: true, threshold: 0.1 });
+  const featuresInView = useInView(featuresRef, { once: true });
+  const statsInView = useInView(statsRef, { once: true });
+  const testimonialsInView = useInView(testimonialsRef, { once: true });
+  const motivationInView = useInView(motivationRef, { once: true });
+  const ctaInView = useInView(ctaRef, { once: true });
 
   useEffect(() => {
     if (featuresInView) {
@@ -120,7 +120,7 @@ const HomePage = () => {
               className="text-left"
             >
               <div className="inline-flex items-center px-3 py-1 mb-6 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-                <Robot size={16} className="mr-2" />
+                <Bot size={16} className="mr-2" />
                 <span className="text-sm font-medium">AI-Powered Career Growth</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
@@ -168,9 +168,8 @@ const HomePage = () => {
             >
               <div className="grid grid-cols-2 gap-4">
                 <motion.div 
-                  variants={pulseAnimation}
-                  initial="initial"
-                  animate="animate"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                   className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
@@ -186,10 +185,8 @@ const HomePage = () => {
                 </motion.div>
                 
                 <motion.div 
-                  variants={pulseAnimation}
-                  initial="initial"
-                  animate="animate"
-                  style={{ animationDelay: "0.5s" }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                   className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl mt-8"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
@@ -205,10 +202,8 @@ const HomePage = () => {
                 </motion.div>
                 
                 <motion.div 
-                  variants={pulseAnimation}
-                  initial="initial"
-                  animate="animate"
-                  style={{ animationDelay: "1s" }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                   className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
@@ -224,10 +219,8 @@ const HomePage = () => {
                 </motion.div>
                 
                 <motion.div 
-                  variants={pulseAnimation}
-                  initial="initial"
-                  animate="animate"
-                  style={{ animationDelay: "1.5s" }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                   className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl mt-8"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
