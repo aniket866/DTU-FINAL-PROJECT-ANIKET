@@ -26,6 +26,64 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import RoboticLogo from '../Logo/RoboticLogo';
 
+const themeColors = [
+  {
+    category: "Cyber Themes",
+    colors: [
+      { name: "Cyber Blue", value: "cyberblue" },
+      { name: "Cyber Purple", value: "cyber-purple" },
+      { name: "Cyber", value: "cyber" },
+      { name: "Matrix", value: "matrix" },
+      { name: "Neon Blue", value: "neon-blue" },
+      { name: "Electric Cyan", value: "electric-cyan" }
+    ]
+  },
+  {
+    category: "Vibrant Themes",
+    colors: [
+      { name: "Deep Violet", value: "deep-violet" },
+      { name: "Vibrant Pink", value: "vibrant-pink" },
+      { name: "Neon Green", value: "neon-green" },
+      { name: "Electric Yellow", value: "electric-yellow" },
+      { name: "Plasma", value: "plasma" },
+      { name: "Digital", value: "digital" }
+    ]
+  },
+  {
+    category: "Cosmic Themes",
+    colors: [
+      { name: "Nebula", value: "nebula" },
+      { name: "Quantum", value: "quantum" },
+      { name: "Celestial", value: "celestial" },
+      { name: "Holographic", value: "holographic" },
+      { name: "Aurora", value: "aurora" },
+      { name: "Cosmic", value: "cosmic" }
+    ]
+  },
+  {
+    category: "Retro Themes",
+    colors: [
+      { name: "Synthwave", value: "synthwave" },
+      { name: "Retro Wave", value: "retro-wave" },
+      { name: "Vapor", value: "vapor" },
+      { name: "Glitch", value: "glitch" },
+      { name: "Binary", value: "binary" },
+      { name: "Techno", value: "techno" }
+    ]
+  },
+  {
+    category: "Classic Themes",
+    colors: [
+      { name: "Purple", value: "purple" },
+      { name: "Teal", value: "teal" },
+      { name: "Green", value: "green" },
+      { name: "Amber", value: "amber" },
+      { name: "Rose", value: "rose" },
+      { name: "Cool Gray", value: "cool-gray" }
+    ]
+  }
+];
+
 const navVariants = {
   hidden: { opacity: 0, y: -20 },
   visible: { 

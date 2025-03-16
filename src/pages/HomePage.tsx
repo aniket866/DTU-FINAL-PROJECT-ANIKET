@@ -79,6 +79,20 @@ const sparkleVariants = {
   }
 };
 
+const glowVariants = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { 
+    opacity: [0.5, 1, 0.5],
+    scale: [0.9, 1.05, 0.9],
+    transition: { 
+      duration: 3,
+      repeat: Infinity,
+      repeatType: "mirror" as const,
+      delay: 0.2
+    }
+  }
+};
+
 const HomePage = () => {
   const controls = useAnimation();
   const featuresRef = useRef(null);
