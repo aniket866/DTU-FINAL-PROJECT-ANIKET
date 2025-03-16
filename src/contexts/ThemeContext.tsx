@@ -44,7 +44,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       setTheme(savedTheme);
     }
     
-    if (savedThemeColor) {
+    if (savedThemeColor)  {
       setThemeColor(savedThemeColor);
     }
   }, []);
