@@ -14,12 +14,21 @@ import AssessmentPage from "./pages/AssessmentPage";
 import LearningPage from "./pages/LearningPage";
 import MentorsPage from "./pages/MentorsPage";
 import ResourcesPage from "./pages/ResourcesPage";
-import MotivationPage from "./pages/MotivationPage"; // Added new motivation page
+import MotivationPage from "./pages/MotivationPage"; 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
+
+// Career Field specific pages
+import TechnologyCareerPage from "./pages/careers/TechnologyCareerPage";
+import HealthcareCareerPage from "./pages/careers/HealthcareCareerPage";
+import BusinessCareerPage from "./pages/careers/BusinessCareerPage";
+import EducationCareerPage from "./pages/careers/EducationCareerPage";
+import LegalCareerPage from "./pages/careers/LegalCareerPage";
+import EngineeringCareerPage from "./pages/careers/EngineeringCareerPage";
+import EnvironmentalCareerPage from "./pages/careers/EnvironmentalCareerPage";
 
 // Protected route component
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
@@ -41,9 +50,18 @@ const App = () => (
               <Route path="/learning" element={<LearningPage />} />
               <Route path="/mentors" element={<MentorsPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
-              <Route path="/motivation" element={<MotivationPage />} /> {/* Added new route */}
+              <Route path="/motivation" element={<MotivationPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              
+              {/* Career Field Routes */}
+              <Route path="/careers/technology" element={<TechnologyCareerPage />} />
+              <Route path="/careers/healthcare" element={<HealthcareCareerPage />} />
+              <Route path="/careers/business" element={<BusinessCareerPage />} />
+              <Route path="/careers/education" element={<EducationCareerPage />} />
+              <Route path="/careers/legal" element={<LegalCareerPage />} />
+              <Route path="/careers/engineering" element={<EngineeringCareerPage />} />
+              <Route path="/careers/environmental" element={<EnvironmentalCareerPage />} />
               
               {/* Protected Routes */}
               <Route path="/profile" element={

@@ -4,69 +4,99 @@ import MainLayout from '../components/Layout/MainLayout';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Code, Youtube, BookOpen, Lightbulb, BookMarked, ArrowRight } from 'lucide-react';
+import { FileText, Code, Youtube, BookOpen, Lightbulb, BookMarked, Briefcase, Stethoscope, GraduationCap, Scale, Hammer, Leaf, Palette, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Sample resource data
-const resourceCategories = [
+// Updated resource data for multiple career fields
+const careerCategories = [
   {
-    title: "Documentation",
-    description: "Official documentation and reference guides",
-    icon: <FileText className="h-8 w-8 text-primary" />,
-    resources: [
-      { title: "React Documentation", description: "Official React documentation and guides", link: "https://react.dev" },
-      { title: "TypeScript Handbook", description: "Comprehensive TypeScript reference", link: "https://www.typescriptlang.org/docs/" },
-      { title: "MDN Web Docs", description: "Resources for web developers", link: "https://developer.mozilla.org" },
-    ]
-  },
-  {
-    title: "Code Examples",
-    description: "Real-world code examples and repositories",
+    title: "Technology & IT",
+    description: "Resources for tech and IT professionals",
     icon: <Code className="h-8 w-8 text-primary" />,
     resources: [
-      { title: "GitHub Repositories", description: "Top open-source React projects", link: "#" },
-      { title: "CodeSandbox Templates", description: "Ready-to-use React templates", link: "#" },
-      { title: "Stack Overflow Solutions", description: "Common coding problems solved", link: "#" },
+      { title: "Programming Fundamentals", description: "Learn coding basics across languages", link: "#" },
+      { title: "Cloud Computing Guide", description: "AWS, Azure, and Google Cloud resources", link: "#" },
+      { title: "Cybersecurity Essentials", description: "Protect digital assets and data", link: "#" },
     ]
   },
   {
-    title: "Video Tutorials",
-    description: "In-depth video courses and tutorials",
-    icon: <Youtube className="h-8 w-8 text-primary" />,
+    title: "Healthcare",
+    description: "Resources for medical professionals",
+    icon: <Stethoscope className="h-8 w-8 text-primary" />,
     resources: [
-      { title: "React Crash Course", description: "Complete intro to React", link: "#" },
-      { title: "Advanced TypeScript", description: "Master TypeScript features", link: "#" },
-      { title: "Full Stack Development", description: "End-to-end application building", link: "#" },
+      { title: "Medical Certification Paths", description: "Guide to healthcare certifications", link: "#" },
+      { title: "Patient Care Resources", description: "Improving healthcare delivery", link: "#" },
+      { title: "Healthcare Administration", description: "Managing medical facilities", link: "#" },
     ]
   },
   {
-    title: "Books",
-    description: "Essential reading for developers",
-    icon: <BookOpen className="h-8 w-8 text-primary" />,
+    title: "Business & Finance",
+    description: "Resources for business professionals",
+    icon: <Briefcase className="h-8 w-8 text-primary" />,
     resources: [
-      { title: "React Design Patterns", description: "Best practices and patterns", link: "#" },
-      { title: "TypeScript in Action", description: "Real-world TypeScript usage", link: "#" },
-      { title: "Modern JavaScript", description: "ES6+ and beyond", link: "#" },
+      { title: "Financial Analysis", description: "Understanding business metrics", link: "#" },
+      { title: "Project Management", description: "Leading teams effectively", link: "#" },
+      { title: "Business Strategy", description: "Planning for organizational success", link: "#" },
     ]
   },
   {
-    title: "Articles",
-    description: "Blogs and articles on latest trends",
-    icon: <Lightbulb className="h-8 w-8 text-primary" />,
+    title: "Education",
+    description: "Resources for teaching professionals",
+    icon: <GraduationCap className="h-8 w-8 text-primary" />,
     resources: [
-      { title: "State Management in 2023", description: "Modern approaches to state", link: "#" },
-      { title: "Performance Optimization", description: "Speed up your React apps", link: "#" },
-      { title: "Accessibility Guide", description: "Building inclusive applications", link: "#" },
+      { title: "Teaching Methodologies", description: "Effective classroom strategies", link: "#" },
+      { title: "Educational Technology", description: "Digital tools for modern education", link: "#" },
+      { title: "Curriculum Development", description: "Design impactful learning experiences", link: "#" },
     ]
   },
   {
-    title: "Cheat Sheets",
-    description: "Quick reference guides and cheat sheets",
+    title: "Legal",
+    description: "Resources for legal professionals",
+    icon: <Scale className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "Legal Research Methods", description: "Effective case preparation", link: "#" },
+      { title: "Contract Law Essentials", description: "Understanding legal agreements", link: "#" },
+      { title: "Legal Ethics", description: "Professional conduct in law", link: "#" },
+    ]
+  },
+  {
+    title: "Engineering",
+    description: "Resources for engineering fields",
+    icon: <Hammer className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "Civil Engineering Fundamentals", description: "Infrastructure development", link: "#" },
+      { title: "Mechanical Design Principles", description: "Creating efficient systems", link: "#" },
+      { title: "Electrical Engineering", description: "Power and electronics basics", link: "#" },
+    ]
+  },
+  {
+    title: "Creative Arts",
+    description: "Resources for artists and designers",
+    icon: <Palette className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "Digital Design Fundamentals", description: "Creating visual content", link: "#" },
+      { title: "Creative Portfolio Building", description: "Showcase your artistic work", link: "#" },
+      { title: "Art Marketing Strategies", description: "Promoting creative services", link: "#" },
+    ]
+  },
+  {
+    title: "Environmental Science",
+    description: "Resources for environmental work",
+    icon: <Leaf className="h-8 w-8 text-primary" />,
+    resources: [
+      { title: "Sustainability Practices", description: "Implementing green initiatives", link: "#" },
+      { title: "Environmental Assessment", description: "Evaluating ecological impact", link: "#" },
+      { title: "Conservation Biology", description: "Protecting natural resources", link: "#" },
+    ]
+  },
+  {
+    title: "General Career Resources",
+    description: "Universal professional development",
     icon: <BookMarked className="h-8 w-8 text-primary" />,
     resources: [
-      { title: "React Hooks Reference", description: "All hooks explained", link: "#" },
-      { title: "TypeScript Types", description: "Common types and usage", link: "#" },
-      { title: "CSS Grid & Flexbox", description: "Layout cheat sheet", link: "#" },
+      { title: "Resume Writing Guide", description: "Craft an effective CV", link: "#" },
+      { title: "Interview Preparation", description: "Ace your next job interview", link: "#" },
+      { title: "Networking Strategies", description: "Build professional connections", link: "#" },
     ]
   }
 ];
@@ -82,7 +112,7 @@ const ResourcesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Developer Resources
+            Career Resources
           </motion.h1>
           <motion.p 
             className="text-xl text-muted-foreground max-w-2xl mx-auto"
@@ -90,12 +120,12 @@ const ResourcesPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            A curated collection of high-quality resources to help you excel in your career
+            A curated collection of high-quality resources for professionals across various fields
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-          {resourceCategories.map((category, index) => (
+          {careerCategories.map((category, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

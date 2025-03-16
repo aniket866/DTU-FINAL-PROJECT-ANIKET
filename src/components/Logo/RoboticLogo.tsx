@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Cpu, Zap, Layers } from 'lucide-react';
+import { Briefcase, Cpu, Zap, Layers, GraduationCap } from 'lucide-react';
 
 interface RoboticLogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -47,7 +47,7 @@ const RoboticLogo: React.FC<RoboticLogoProps> = ({
               ease: "linear"
             }}
           >
-            <Cpu size={sizeConfig.icon} className="text-white" />
+            <GraduationCap size={sizeConfig.icon} className="text-white" />
           </motion.div>
         </motion.div>
         
@@ -70,7 +70,7 @@ const RoboticLogo: React.FC<RoboticLogoProps> = ({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <span className="font-bold text-lg tracking-tight">Tech<span className="text-primary">Career</span>AI</span>
+          <span className="font-bold text-lg tracking-tight">Career<span className="text-primary">Hub</span>AI</span>
         </motion.div>
       )}
     </div>

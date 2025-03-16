@@ -1,11 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Menu, X, Sun, Moon, Settings, LogOut, User, 
   ChevronDown, Palette, MonitorSmartphone, Zap, Sparkles,
-  Brain, Video, Briefcase, BookOpen, Users, FileText, Youtube
+  Brain, Video, Briefcase, BookOpen, Users, FileText, Youtube,
+  GraduationCap, Stethoscope, Scale, Hammer, Leaf, HeartPulse
 } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -77,45 +77,22 @@ const Header = () => {
 
   const navigationLinks = [
     { name: 'Home', path: '/', icon: <FileText className="h-4 w-4" /> },
-    { name: 'Interview AI', path: '/interview', icon: <Video className="h-4 w-4" /> },
-    { name: 'Skill Assessment', path: '/assessment', icon: <Brain className="h-4 w-4" /> },
+    { name: 'AI Interviews', path: '/interview', icon: <Video className="h-4 w-4" /> },
+    { name: 'Career Assessment', path: '/assessment', icon: <Brain className="h-4 w-4" /> },
     { name: 'Learning Paths', path: '/learning', icon: <BookOpen className="h-4 w-4" /> },
     { name: 'Find Mentors', path: '/mentors', icon: <Users className="h-4 w-4" /> },
     { name: 'Resources', path: '/resources', icon: <Youtube className="h-4 w-4" /> },
     { name: 'Motivation', path: '/motivation', icon: <Sparkles className="h-4 w-4" /> },
   ];
 
-  // Organized theme colors by category for better selection
-  const themeColors = [
-    { category: "Cyber", 
-      colors: [
-        { name: "Neon Blue", value: "neon-blue" },
-        { name: "Cyber Purple", value: "cyber-purple" },
-        { name: "Electric Cyan", value: "electric-cyan" },
-        { name: "Cyber", value: "cyber" },
-        { name: "Matrix", value: "matrix" },
-        { name: "Nebula", value: "nebula" }
-      ]
-    },
-    { category: "Vibrant", 
-      colors: [
-        { name: "Vibrant Pink", value: "vibrant-pink" },
-        { name: "Deep Violet", value: "deep-violet" },
-        { name: "Synthwave", value: "synthwave" },
-        { name: "Holographic", value: "holographic" },
-        { name: "Electric Yellow", value: "electric-yellow" }
-      ]
-    },
-    { category: "Professional", 
-      colors: [
-        { name: "Default", value: "default" },
-        { name: "Purple", value: "purple" },
-        { name: "Teal", value: "teal" },
-        { name: "Amber", value: "amber" },
-        { name: "Green", value: "green" },
-        { name: "Rose", value: "rose" }
-      ]
-    }
+  const careerFields = [
+    { name: "Technology", icon: <MonitorSmartphone className="h-4 w-4" />, path: "/careers/technology" },
+    { name: "Healthcare", icon: <HeartPulse className="h-4 w-4" />, path: "/careers/healthcare" },
+    { name: "Business", icon: <Briefcase className="h-4 w-4" />, path: "/careers/business" },
+    { name: "Education", icon: <GraduationCap className="h-4 w-4" />, path: "/careers/education" },
+    { name: "Legal", icon: <Scale className="h-4 w-4" />, path: "/careers/legal" },
+    { name: "Engineering", icon: <Hammer className="h-4 w-4" />, path: "/careers/engineering" },
+    { name: "Environmental", icon: <Leaf className="h-4 w-4" />, path: "/careers/environmental" },
   ];
 
   useEffect(() => {
@@ -154,47 +131,98 @@ const Header = () => {
           <RoboticLogo size="md" withText={true} />
         </Link>
 
-        {/* Desktop Navigation */}
         <motion.nav 
           className="hidden md:flex items-center gap-1 mx-auto"
           initial="hidden"
           animate="visible"
           variants={navVariants}
         >
-          {navigationLinks.map((link, index) => (
-            <motion.div
-              key={link.path}
-              variants={itemVariants}
-              className="relative group"
-            >
-              <Link
-                to={link.path}
-                className={`px-4 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 flex items-center gap-2 relative ${
-                  location.pathname === link.path 
-                    ? 'text-primary font-medium' 
-                    : 'text-foreground/80 hover:text-foreground'
-                }`}
+          {navigationLinks.map((link, index) => {
+            if (link.name === 'Career Assessment') {
+              return (
+                <motion.div
+                  key={link.path}
+                  variants={itemVariants}
+                  className="relative group"
+                >
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className={`px-4 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 flex items-center gap-2 relative ${
+                        location.pathname === link.path 
+                          ? 'text-primary font-medium' 
+                          : 'text-foreground/80 hover:text-foreground'
+                      }`}>
+                        {link.icon}
+                        {link.name}
+                        <ChevronDown className="h-3 w-3 opacity-50" />
+                        
+                        {location.pathname === link.path && (
+                          <motion.div
+                            layoutId="activeNavIndicator"
+                            className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary rounded-full -mb-1 transform -translate-x-1/2"
+                            transition={{ type: "spring", duration: 0.5 }}
+                          />
+                        )}
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56">
+                      <DropdownMenuLabel>Career Fields</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      {careerFields.map((field) => (
+                        <DropdownMenuItem key={field.path} asChild>
+                          <Link to={field.path} className="cursor-pointer w-full">
+                            {field.icon}
+                            <span className="ml-2">{field.name}</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link to={link.path} className="cursor-pointer w-full">
+                          <Brain className="h-4 w-4 mr-2" />
+                          <span>All Career Assessments</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  
+                  <div className="absolute inset-0 rounded-lg bg-primary/5 scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100 -z-10 transition-all duration-300"></div>
+                </motion.div>
+              );
+            }
+            
+            return (
+              <motion.div
+                key={link.path}
+                variants={itemVariants}
+                className="relative group"
               >
-                {link.icon}
-                {link.name}
+                <Link
+                  to={link.path}
+                  className={`px-4 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 flex items-center gap-2 relative ${
+                    location.pathname === link.path 
+                      ? 'text-primary font-medium' 
+                      : 'text-foreground/80 hover:text-foreground'
+                  }`}
+                >
+                  {link.icon}
+                  {link.name}
+                  
+                  {location.pathname === link.path && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary rounded-full -mb-1 transform -translate-x-1/2"
+                      transition={{ type: "spring", duration: 0.5 }}
+                    />
+                  )}
+                </Link>
                 
-                {/* Active indicator dot */}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="activeNavIndicator"
-                    className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary rounded-full -mb-1 transform -translate-x-1/2"
-                    transition={{ type: "spring", duration: 0.5 }}
-                  />
-                )}
-              </Link>
-              
-              {/* Hover effect */}
-              <div className="absolute inset-0 rounded-lg bg-primary/5 scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100 -z-10 transition-all duration-300"></div>
-            </motion.div>
-          ))}
+                <div className="absolute inset-0 rounded-lg bg-primary/5 scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100 -z-10 transition-all duration-300"></div>
+              </motion.div>
+            );
+          })}
         </motion.nav>
 
-        {/* Right Side Controls - Desktop */}
         <div className="hidden md:flex items-center gap-2">
           {isAuthenticated ? (
             <motion.div
@@ -369,7 +397,6 @@ const Header = () => {
           </motion.div>
         </div>
 
-        {/* Mobile Navigation Toggle */}
         <div className="flex items-center md:hidden">
           <Button 
             variant="ghost" 
@@ -404,7 +431,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -430,6 +456,21 @@ const Header = () => {
                       {link.icon}
                       {link.name}
                     </Link>
+                    
+                    {link.name === 'Career Assessment' && (
+                      <div className="pl-8 mt-2 space-y-1">
+                        {careerFields.map((field) => (
+                          <Link
+                            key={field.path}
+                            to={field.path}
+                            className="px-4 py-2 rounded-lg text-base transition-all hover:bg-primary/10 flex items-center gap-3 text-foreground/70"
+                          >
+                            {field.icon}
+                            {field.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </nav>
