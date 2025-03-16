@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -95,6 +96,37 @@
     --border: 217.2 32.6% 20%;
     --input: 217.2 32.6% 20%;
     --ring: 224.3 76.3% 48%; /* Blue */
+  }
+
+  /* CyberBlue theme - matches the screenshot */
+  .theme-cyberblue {
+    --background: 220 40% 5%; /* Deep blue-black background */
+    --foreground: 210 40% 98%;
+    
+    --card: 220 40% 10%; /* Dark card background */
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 220 40% 10%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 160 100% 50%; /* Bright green from screenshot */
+    --primary-foreground: 220 40% 5%;
+    
+    --secondary: 217 45% 15%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 45% 15%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 160 100% 50%; /* Bright green */
+    --accent-foreground: 220 40% 5%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217 45% 15%;
+    --input: 217 45% 15%;
+    --ring: 160 100% 50%; /* Bright green */
   }
 
   /* Dark mode theme variants */
@@ -302,6 +334,46 @@
       rgba(255, 255, 255, 0)
     );
   }
+
+  /* Cyberpunk theme specific utilities */
+  .cyber-glow {
+    text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary));
+  }
+  
+  .cyber-box {
+    @apply relative bg-black/40 border border-primary/30 rounded-md overflow-hidden;
+  }
+  
+  .cyber-box::before {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1 bg-primary;
+    animation: scanLine 2s linear infinite;
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(18, 16, 16, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(18, 16, 16, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .cyber-terminal {
+    @apply font-mono bg-black/80 text-primary border border-primary/50 p-4 rounded overflow-hidden;
+  }
+  
+  @keyframes scanLine {
+    0% {
+      transform: translateY(0%);
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0.5;
+    }
+  }
   
   @keyframes shimmer {
     100% {
@@ -348,4 +420,3 @@
     }
   }
 }
-

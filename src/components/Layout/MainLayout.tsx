@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -14,10 +15,15 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children, className, fullWidth = false, noPadding = false }) => {
   const location = useLocation();
+  const { themeColor } = useTheme();
   const isHomePage = location.pathname === '/';
+  const isCyberTheme = themeColor === 'cyber' || themeColor === 'cyberblue';
   
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={cn(
+      "flex flex-col min-h-screen",
+      isCyberTheme && "cyber-grid"
+    )}>
       <Header />
       <main 
         className={cn(

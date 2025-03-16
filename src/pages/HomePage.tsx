@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation, useInView } from 'framer-motion';
@@ -74,7 +73,7 @@ const sparkleVariants = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      repeatType: "loop", // Fixed: Using a specific allowed value
+      repeatType: "loop",
       delay: Math.random() * 2
     }
   }
@@ -132,208 +131,137 @@ const HomePage = () => {
         ))}
       </div>
 
-      {/* Hero Section - Modern with interactive elements */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background pt-32 pb-20 md:pt-40 md:pb-32">
+      {/* Hero Section - Modern with interactive elements (matched to screenshot) */}
+      <section className="relative overflow-hidden pt-20 pb-16">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-left"
-            >
-              <div className="inline-flex items-center px-3 py-1 mb-6 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
-                <Bot size={16} className="mr-2" />
-                <span className="text-sm font-medium">AI-Powered Career Growth</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-                Accelerate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400 animate-gradient-shift bg-[length:200%_auto]">Tech Career</span> With AI
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Get personalized career guidance, interview practice, skill analysis,
-                and exclusive mentorship to advance your tech career journey.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" asChild className="rounded-lg shadow-lg bg-primary hover:bg-primary/90">
-                  <Link to="/register">Start Free Trial</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="rounded-lg border-primary/20">
-                  <Link to="/interview" className="flex items-center gap-1">
-                    <Video className="h-4 w-4" />
-                    Try AI Interview
-                  </Link>
-                </Button>
-              </div>
-              
-              <div className="mt-8 flex items-center space-x-4">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full border-2 border-background overflow-hidden">
-                      <img 
-                        src={`https://randomuser.me/api/portraits/${i % 2 === 0 ? 'women' : 'men'}/${i}.jpg`} 
-                        alt="User avatar" 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="text-sm">
-                  <span className="text-primary font-bold">4,800+</span> tech professionals using our platform
-                </div>
-              </div>
-            </motion.div>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center px-3 py-1 mb-6 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
+              <Zap size={16} className="mr-2" />
+              <span className="text-sm font-medium">AI-Powered Career Development ✨</span>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                  className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                    <Brain className="text-primary" size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">AI Interview Analysis</h3>
-                  <p className="text-sm text-muted-foreground">Real-time feedback on your responses and body language</p>
-                  <Button variant="ghost" size="sm" asChild className="mt-4">
-                    <Link to="/interview" className="flex items-center gap-1">
-                      Try Now <ChevronRight size={14} />
-                    </Link>
-                  </Button>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                  className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl mt-8"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                    <BarChart className="text-primary" size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">Skill Gap Analysis</h3>
-                  <p className="text-sm text-muted-foreground">Discover your strengths and areas for improvement</p>
-                  <Button variant="ghost" size="sm" asChild className="mt-4">
-                    <Link to="/assessment" className="flex items-center gap-1">
-                      Analyze Skills <ChevronRight size={14} />
-                    </Link>
-                  </Button>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                  className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                    <BookOpen className="text-primary" size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">Learning Paths</h3>
-                  <p className="text-sm text-muted-foreground">Customized courses based on your career goals</p>
-                  <Button variant="ghost" size="sm" asChild className="mt-4">
-                    <Link to="/learning" className="flex items-center gap-1">
-                      Explore Paths <ChevronRight size={14} />
-                    </Link>
-                  </Button>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                  className="glassmorphism dark:bg-black/30 rounded-2xl p-6 border border-primary/20 shadow-xl mt-8"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                    <Users className="text-primary" size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">Expert Mentorship</h3>
-                  <p className="text-sm text-muted-foreground">Connect with industry professionals for guidance</p>
-                  <Button variant="ghost" size="sm" asChild className="mt-4">
-                    <Link to="/mentors" className="flex items-center gap-1">
-                      Find Mentors <ChevronRight size={14} />
-                    </Link>
-                  </Button>
-                </motion.div>
-              </div>
-              
-              <motion.div 
-                className="absolute -bottom-6 -right-6 backdrop-blur-md bg-background/80 rounded-xl p-4 border border-primary/20 shadow-lg animate-float z-20"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5, duration: 0.5 }}
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+              Your Personal <span className="text-primary cyber-glow">AI Career Coach</span>
+            </h1>
+            
+            <p className="text-xl text-muted-foreground mb-8">
+              Accelerate your career growth with personalized AI coaching,
+              interview preparation, and skill development.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              <Button size="lg" asChild className="rounded-lg bg-primary hover:bg-primary/90">
+                <Link to="/interview" className="flex items-center gap-2">
+                  <Play className="h-4 w-4" />
+                  Try Interview Simulator
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="rounded-lg border-primary/20">
+                <Link to="/assessment" className="flex items-center gap-2">
+                  Analyze Your Skills
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Feature Cards - 4 Cards in a row as shown in the screenshot */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {[
+              {
+                icon: <MessageSquare className="h-6 w-6 text-primary" />,
+                title: "AI Interview Coach",
+                description: "Practice with AI-simulated interviews that provide real-time feedback."
+              },
+              {
+                icon: <Brain className="h-6 w-6 text-primary" />,
+                title: "Skill Development",
+                description: "Personalized learning recommendations based on your skill gaps."
+              },
+              {
+                icon: <BarChart className="h-6 w-6 text-primary" />,
+                title: "Market Insights",
+                description: "Real-time industry trends to help you make informed career decisions."
+              },
+              {
+                icon: <Users className="h-6 w-6 text-primary" />,
+                title: "Mentorship",
+                description: "Connect with AI mentors specialized in your industry for guidance."
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-card border border-border/30 rounded-xl overflow-hidden transition-all hover:shadow-md hover:border-primary/30"
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
-                    <CheckCircle2 size={24} />
+                <div className="p-6">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    {feature.icon}
                   </div>
-                  <div className="text-left">
-                    <p className="font-medium">Interview Success Rate</p>
-                    <p className="text-sm text-muted-foreground">+64% after just 3 sessions</p>
-                  </div>
+                  <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
                 </div>
               </motion.div>
-            </motion.div>
+            ))}
           </div>
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute top-1/2 left-10 transform -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/3 right-10 transform -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-30"></div>
       </section>
 
       {/* Tech Tools Grid - Small, even widgets with animations */}
-      <section className="py-16 bg-background relative overflow-hidden">
+      <section className="py-16 bg-background/30 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div className="text-center max-w-3xl mx-auto mb-12" variants={fadeIn} initial="hidden" animate="visible">
             <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
               <Code size={16} className="mr-2" />
-              <span className="text-sm font-medium">Tech Stack Tools</span>
+              <span className="text-sm font-medium">Career Fields</span>
             </div>
-            <h2 className="text-3xl font-bold mb-4">Essential Developer Tools</h2>
+            <h2 className="text-3xl font-bold mb-4">Explore Multiple Career Paths</h2>
             <p className="text-lg text-muted-foreground">
-              Stay ahead with the most in-demand technologies in the industry
+              Our AI coach helps professionals in various industries develop their careers
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              { icon: <Cpu className="h-5 w-5" />, title: "React.js", color: "bg-blue-500/10 text-blue-500" },
-              { icon: <Database className="h-5 w-5" />, title: "Node.js", color: "bg-green-500/10 text-green-500" },
-              { icon: <GitBranch className="h-5 w-5" />, title: "Git", color: "bg-orange-500/10 text-orange-500" },
-              { icon: <Code className="h-5 w-5" />, title: "TypeScript", color: "bg-blue-400/10 text-blue-400" },
-              { icon: <Cloud className="h-5 w-5" />, title: "AWS", color: "bg-yellow-500/10 text-yellow-500" },
-              { icon: <Database className="h-5 w-5" />, title: "MongoDB", color: "bg-green-600/10 text-green-600" },
-              { icon: <Server className="h-5 w-5" />, title: "Docker", color: "bg-blue-600/10 text-blue-600" },
-              { icon: <Shield className="h-5 w-5" />, title: "Cybersecurity", color: "bg-red-500/10 text-red-500" },
-              { icon: <LineChart className="h-5 w-5" />, title: "Data Science", color: "bg-purple-500/10 text-purple-500" },
-              { icon: <Network className="h-5 w-5" />, title: "Networking", color: "bg-indigo-500/10 text-indigo-500" },
-              { icon: <FileSearch className="h-5 w-5" />, title: "Testing", color: "bg-amber-500/10 text-amber-500" },
-              { icon: <BarChart2 className="h-5 w-5" />, title: "Analytics", color: "bg-teal-500/10 text-teal-500" },
-              { icon: <Cloud className="h-5 w-5" />, title: "Azure", color: "bg-blue-300/10 text-blue-300" },
-              { icon: <PieChart className="h-5 w-5" />, title: "Python", color: "bg-yellow-600/10 text-yellow-600" },
-              { icon: <AreaChart className="h-5 w-5" />, title: "TensorFlow", color: "bg-orange-400/10 text-orange-400" },
-            ].map((tool, index) => (
+              { icon: <Cpu className="h-5 w-5" />, title: "Technology", link: "/careers/technology", color: "bg-blue-500/10 text-blue-500" },
+              { icon: <Database className="h-5 w-5" />, title: "Healthcare", link: "/careers/healthcare", color: "bg-green-500/10 text-green-500" },
+              { icon: <Briefcase className="h-5 w-5" />, title: "Business", link: "/careers/business", color: "bg-amber-500/10 text-amber-500" },
+              { icon: <BookOpen className="h-5 w-5" />, title: "Education", link: "/careers/education", color: "bg-purple-500/10 text-purple-500" },
+              { icon: <Shield className="h-5 w-5" />, title: "Legal", link: "/careers/legal", color: "bg-red-500/10 text-red-500" },
+              { icon: <GitBranch className="h-5 w-5" />, title: "Engineering", link: "/careers/engineering", color: "bg-orange-500/10 text-orange-500" },
+              { icon: <LineChart className="h-5 w-5" />, title: "Finance", link: "/resources", color: "bg-emerald-500/10 text-emerald-500" },
+              { icon: <Network className="h-5 w-5" />, title: "Marketing", link: "/resources", color: "bg-pink-500/10 text-pink-500" },
+              { icon: <Cloud className="h-5 w-5" />, title: "Science", link: "/resources", color: "bg-indigo-500/10 text-indigo-500" },
+              { icon: <Server className="h-5 w-5" />, title: "Government", link: "/resources", color: "bg-slate-500/10 text-slate-500" },
+              { icon: <FileSearch className="h-5 w-5" />, title: "Research", link: "/resources", color: "bg-cyan-500/10 text-cyan-500" },
+              { icon: <BarChart2 className="h-5 w-5" />, title: "Environment", link: "/careers/environmental", color: "bg-teal-500/10 text-teal-500" },
+            ].map((field, index) => (
               <motion.div
                 key={index}
-                className={`${tool.color} rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all`}
+                className={`${field.color} rounded-xl p-4 border border-white/10 shadow-sm hover:shadow-md transition-all`}
                 whileHover={{ y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                <div className="flex flex-col items-center justify-center text-center h-full">
-                  <motion.div 
-                    className="mb-2"
-                    animate={{ rotate: [0, 10, 0, -10, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, repeatType: "loop" }}
-                  >
-                    {tool.icon}
-                  </motion.div>
-                  <h3 className="text-sm font-medium">{tool.title}</h3>
-                </div>
+                <Link to={field.link} className="block">
+                  <div className="flex flex-col items-center justify-center text-center h-full">
+                    <motion.div 
+                      className="mb-2"
+                      animate={{ rotate: [0, 10, 0, -10, 0] }}
+                      transition={{ duration: 5, repeat: Infinity, repeatType: "loop" }}
+                    >
+                      {field.icon}
+                    </motion.div>
+                    <h3 className="text-sm font-medium">{field.title}</h3>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -341,7 +269,7 @@ const HomePage = () => {
       </section>
 
       {/* Small Career Resources Grid */}
-      <section className="py-16 bg-primary/5 relative overflow-hidden">
+      <section className="py-16 bg-background relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div className="text-center max-w-3xl mx-auto mb-12" variants={fadeIn} initial="hidden" animate="visible">
             <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary-foreground border border-primary/20">
@@ -350,7 +278,7 @@ const HomePage = () => {
             </div>
             <h2 className="text-3xl font-bold mb-4">Essential Career Tools</h2>
             <p className="text-lg text-muted-foreground">
-              Everything you need to excel in your tech career journey
+              Everything you need to excel in your career journey
             </p>
           </motion.div>
 
@@ -367,7 +295,7 @@ const HomePage = () => {
             ].map((resource, index) => (
               <motion.div
                 key={index}
-                className="bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                className="bg-card border border-border/30 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
                 whileHover={{ scale: 1.03 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -395,7 +323,7 @@ const HomePage = () => {
       {/* Features Section - Converted to small even widgets */}
       <motion.section
         ref={featuresRef}
-        className="py-20 bg-background relative overflow-hidden"
+        className="py-20 bg-background/30 relative overflow-hidden"
         initial="hidden"
         animate={featuresInView ? "visible" : "hidden"}
         variants={staggerChildren}
@@ -411,7 +339,7 @@ const HomePage = () => {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">AI-Powered Career Acceleration</h2>
             <p className="text-xl text-muted-foreground">
-              Our advanced AI technology provides personalized guidance to help you excel in your tech career.
+              Our advanced AI technology provides personalized guidance to help you excel in your career.
             </p>
           </motion.div>
 
@@ -460,7 +388,7 @@ const HomePage = () => {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-background border border-border rounded-xl overflow-hidden transition-all hover:shadow-md hover:-translate-y-1 card-hover group"
+                className="bg-card border border-border/30 rounded-xl overflow-hidden transition-all hover:shadow-md hover:-translate-y-1 card-hover group"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { 
