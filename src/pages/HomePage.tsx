@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/Layout/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import AnimatedCareerImage from '@/components/Home/AnimatedCareerImage';
 import { 
   Zap,
   ArrowRight,
@@ -113,63 +115,9 @@ const HomePage = () => {
               </div>
             </div>
             
-            {/* Right Column - Feature Cards */}
-            <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <motion.div 
-                className="techblue-panel p-6 space-y-3 border border-primary/30 rounded-lg"
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <Brain className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">AI Interview Analysis</h3>
-                <p className="text-sm text-muted-foreground">Real-time feedback on your responses and body language</p>
-                <Link to="/interview" className="inline-flex items-center gap-1 text-primary text-sm">
-                  Try Now <ArrowRight className="h-3 w-3" />
-                </Link>
-              </motion.div>
-              
-              <motion.div 
-                className="techblue-panel p-6 space-y-3 border border-primary/30 rounded-lg"
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <BarChart className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Skill Gap Analysis</h3>
-                <p className="text-sm text-muted-foreground">Discover your strengths and areas for improvement</p>
-                <Link to="/assessment" className="inline-flex items-center gap-1 text-primary text-sm">
-                  Analyze Skills <ArrowRight className="h-3 w-3" />
-                </Link>
-              </motion.div>
-              
-              <motion.div 
-                className="techblue-panel p-6 space-y-3 border border-primary/30 rounded-lg"
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <BookOpen className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Learning Paths</h3>
-                <p className="text-sm text-muted-foreground">Customized courses based on your career goals</p>
-                <Link to="/learning" className="inline-flex items-center gap-1 text-primary text-sm">
-                  Explore Paths <ArrowRight className="h-3 w-3" />
-                </Link>
-              </motion.div>
-              
-              <motion.div 
-                className="techblue-panel p-6 space-y-3 border border-primary/30 rounded-lg"
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Expert Mentorship</h3>
-                <p className="text-sm text-muted-foreground">Connect with industry professionals for guidance</p>
-                <Link to="/mentors" className="inline-flex items-center gap-1 text-primary text-sm">
-                  Find Mentors <ArrowRight className="h-3 w-3" />
-                </Link>
-              </motion.div>
+            {/* Right Column - Animated Image */}
+            <div className="lg:w-1/2 flex justify-center items-center">
+              <AnimatedCareerImage />
             </div>
           </div>
         </div>
