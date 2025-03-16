@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Video, Mic, MessageSquare, Smile, BarChart, Clock, Play, Pause, RotateCcw, FileText } from 'lucide-react';
+import { Video, Mic, MessageSquare, Smile, BarChart, Clock, Play, Pause, RotateCcw, FileText, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
