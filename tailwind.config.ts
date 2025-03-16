@@ -122,6 +122,22 @@ export default {
 					"0%": { backgroundPosition: "0% 50%" },
 					"50%": { backgroundPosition: "100% 50%" },
 					"100%": { backgroundPosition: "0% 50%" }
+				},
+				"glow": {
+					"0%, 100%": { 
+						textShadow: "0 0 5px rgba(120, 120, 255, 0.8), 0 0 10px rgba(120, 120, 255, 0.5)"
+					},
+					"50%": { 
+						textShadow: "0 0 15px rgba(120, 120, 255, 1), 0 0 20px rgba(120, 120, 255, 0.7)" 
+					}
+				},
+				"shimmer": {
+					"0%": { backgroundPosition: "-200% 0" },
+					"100%": { backgroundPosition: "200% 0" }
+				},
+				"scan-line": {
+					"0%": { transform: "translateY(-100%)" },
+					"100%": { transform: "translateY(100%)" }
 				}
 			},
 			animation: {
@@ -133,14 +149,20 @@ export default {
 				"scale-out": "scale-out 0.3s ease-out",
 				"slide-in-right": "slide-in-right 0.3s ease-out",
 				"slide-out-right": "slide-out-right 0.3s ease-out",
-				"float": "float 3s ease-in-out infinite",
+				"float": "float 6s ease-in-out infinite",
 				"pulse": "pulse 2s ease-in-out infinite",
 				"bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
 				"spin-slow": "spin-slow 8s linear infinite",
-				"gradient-shift": "gradient-shift 8s ease infinite"
+				"gradient-shift": "gradient-shift 8s ease infinite",
+				"glow": "glow 2s ease-in-out infinite",
+				"shimmer": "shimmer 5s infinite linear",
+				"scan-line": "scan-line 4s linear infinite"
 			},
 			backdropBlur: {
 				xs: '2px',
+			},
+			fontFamily: {
+				'inter': ['Inter', 'sans-serif'],
 			}
 		}
 	},
