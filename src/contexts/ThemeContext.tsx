@@ -23,7 +23,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: 'dark',
-  themeColor: 'cyberblue',
+  themeColor: 'default',
   setTheme: () => null,
   setThemeColor: () => null,
   toggleTheme: () => null,
@@ -33,7 +33,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('dark');
-  const [themeColor, setThemeColor] = useState<ThemeColor>('cyberblue');
+  const [themeColor, setThemeColor] = useState<ThemeColor>('default');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
