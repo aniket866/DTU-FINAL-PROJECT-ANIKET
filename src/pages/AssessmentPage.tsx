@@ -56,7 +56,7 @@ const AssessmentPage = () => {
             variants={staggerContainer}
           >
             <motion.div variants={fadeIn}>
-              <Card className="mb-6 gradient-border overflow-hidden">
+              <Card className="mb-6 bg-gradient-to-br from-accent/10 to-primary/10 border-primary/20 overflow-hidden">
                 <CardHeader className="relative">
                   <div className="absolute top-0 right-0 -mt-6 -mr-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl"></div>
                   <CardTitle className="text-2xl">Start Your Career Assessment</CardTitle>
@@ -89,29 +89,32 @@ const AssessmentPage = () => {
             <motion.div variants={fadeIn} className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
               {[
                 {
-                  icon: <Target className="h-10 w-10 text-emerald-500" />,
+                  icon: <Target className="h-10 w-10 text-primary" />,
                   title: "Personalized Insights",
-                  description: "Get detailed analysis of your skills and competencies with AI-powered evaluation."
+                  description: "Get detailed analysis of your skills and competencies with AI-powered evaluation.",
+                  bgClass: "from-primary/20 to-primary/5"
                 },
                 {
-                  icon: <BarChart className="h-10 w-10 text-blue-500" />,
+                  icon: <BarChart className="h-10 w-10 text-accent" />,
                   title: "Skills Gap Analysis",
-                  description: "Identify critical skill gaps based on your career goals and current capabilities."
+                  description: "Identify critical skill gaps based on your career goals and current capabilities.",
+                  bgClass: "from-accent/20 to-accent/5"
                 },
                 {
-                  icon: <Award className="h-10 w-10 text-amber-500" />,
+                  icon: <Award className="h-10 w-10 text-primary" />,
                   title: "Industry Benchmarks",
-                  description: "Compare your skills against industry standards and top performers."
+                  description: "Compare your skills against industry standards and top performers.",
+                  bgClass: "from-primary/20 to-primary/5"
                 }
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="animated-border overflow-hidden dark:bg-black/40 bg-white shadow-lg rounded-lg p-6"
+                  className={`overflow-hidden bg-gradient-to-br ${feature.bgClass} dark:bg-black/40 shadow-lg rounded-lg p-6 border border-primary/10`}
                   variants={fadeIn}
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
                   <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="p-3 rounded-full bg-primary/10">
+                    <div className="p-3 rounded-full bg-card/50">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-semibold">{feature.title}</h3>
@@ -128,11 +131,11 @@ const AssessmentPage = () => {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <Card>
+            <Card className="bg-gradient-to-br from-accent/5 to-primary/5 border-primary/20">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Career Skills Assessment</CardTitle>
-                  <div className="text-sm text-muted-foreground">Step 1 of 5</div>
+                  <div className="text-sm text-primary bg-primary/10 px-3 py-1 rounded-full">Step 1 of 5</div>
                 </div>
                 <CardDescription>
                   Rate your proficiency in each skill from 1 (Beginner) to 5 (Expert)
@@ -185,25 +188,29 @@ const AssessmentPage = () => {
                   {
                     icon: <ListChecks className="h-5 w-5 text-primary" />,
                     title: "Skill Inventory",
-                    description: "Rate your proficiency in key professional and technical skills."
+                    description: "Rate your proficiency in key professional and technical skills.",
+                    bgClass: "from-primary/20 to-primary/5"
                   },
                   {
-                    icon: <Brain className="h-5 w-5 text-primary" />,
+                    icon: <Brain className="h-5 w-5 text-accent" />,
                     title: "Psychometric Analysis",
-                    description: "Understand your work style, personality traits and behavioral patterns."
+                    description: "Understand your work style, personality traits and behavioral patterns.",
+                    bgClass: "from-accent/20 to-accent/5"
                   },
                   {
                     icon: <Target className="h-5 w-5 text-primary" />,
                     title: "Career Goals",
-                    description: "Define your short and long-term career objectives."
+                    description: "Define your short and long-term career objectives.",
+                    bgClass: "from-primary/20 to-primary/5"
                   },
                   {
-                    icon: <Award className="h-5 w-5 text-primary" />,
+                    icon: <Award className="h-5 w-5 text-accent" />,
                     title: "Personalized Report",
-                    description: "Receive a detailed breakdown of your results with improvement recommendations."
+                    description: "Receive a detailed breakdown of your results with improvement recommendations.",
+                    bgClass: "from-accent/20 to-accent/5"
                   }
                 ].map((item, index) => (
-                  <div key={index} className="flex gap-3 p-4 rounded-lg bg-primary/5">
+                  <div key={index} className={`flex gap-3 p-4 rounded-lg bg-gradient-to-br ${item.bgClass}`}>
                     <div className="mt-0.5">
                       {item.icon}
                     </div>

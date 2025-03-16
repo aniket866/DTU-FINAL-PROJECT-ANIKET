@@ -21,7 +21,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, className, fullWidth 
       <Header />
       <main 
         className={cn(
-          "flex-grow pt-20",
+          "flex-grow pt-24", // Increased top padding to prevent overlap
           !noPadding && "py-8 md:py-12",
           className
         )}

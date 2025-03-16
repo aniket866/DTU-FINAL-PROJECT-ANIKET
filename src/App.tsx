@@ -14,6 +14,7 @@ import AssessmentPage from "./pages/AssessmentPage";
 import LearningPage from "./pages/LearningPage";
 import MentorsPage from "./pages/MentorsPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import MotivationPage from "./pages/MotivationPage"; // Added new motivation page
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -40,6 +41,7 @@ const App = () => (
               <Route path="/learning" element={<LearningPage />} />
               <Route path="/mentors" element={<MentorsPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
+              <Route path="/motivation" element={<MotivationPage />} /> {/* Added new route */}
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               

@@ -1,388 +1,334 @@
 
 import React, { useState } from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Video, Mic, MessageSquare, Smile, BarChart, Clock, Play, Pause, RotateCcw, FileText, CheckCircle } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1
-    }
-  }
-};
+import { Code, MessageSquare, BookOpen, Lightbulb, Video, Heart, User, Bot, CheckCircle, Play, Mic, Monitor } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 const InterviewPage = () => {
   const [interviewStarted, setInterviewStarted] = useState(false);
+  const { toast } = useToast();
   
+  const handleStartInterview = () => {
+    setInterviewStarted(true);
+    toast({
+      title: "Interview Session Started",
+      description: "Your AI interviewer is ready. Make sure your webcam and microphone are working properly.",
+      duration: 5000,
+    });
+  };
+  
+  const interviewTypes = [
+    {
+      id: "technical",
+      name: "Technical Interview",
+      icon: <Code size={16} />,
+      description: "Practice coding problems and system design questions with AI feedback.",
+    },
+    {
+      id: "behavioral",
+      name: "Behavioral Interview",
+      icon: <MessageSquare size={16} />,
+      description: "Master common behavioral questions with real-time feedback on your responses.",
+    },
+    {
+      id: "case",
+      name: "Case Interview",
+      icon: <BookOpen size={16} />,
+      description: "Practice problem-solving for consulting and business roles.",
+    },
+  ];
+  
+  const technicalTopics = [
+    {
+      title: "Data Structures & Algorithms",
+      difficulty: "Medium",
+      topics: ["Arrays", "Linked Lists", "Trees", "Dynamic Programming"],
+      questions: 15,
+      time: "45 mins",
+      icon: <Code className="h-12 w-12 text-primary" />
+    },
+    {
+      title: "System Design",
+      difficulty: "Hard",
+      topics: ["Scalability", "Database Design", "API Design", "Microservices"],
+      questions: 8,
+      time: "60 mins",
+      icon: <Monitor className="h-12 w-12 text-primary" />
+    },
+    {
+      title: "Frontend Development",
+      difficulty: "Medium",
+      topics: ["JavaScript", "React", "CSS", "Browser APIs"],
+      questions: 12,
+      time: "40 mins",
+      icon: <Code className="h-12 w-12 text-primary" />
+    }
+  ];
+  
+  const behavioralTopics = [
+    {
+      title: "Leadership & Teamwork",
+      difficulty: "Medium",
+      topics: ["Conflict Resolution", "Team Management", "Project Leadership"],
+      questions: 10,
+      time: "30 mins",
+      icon: <User className="h-12 w-12 text-primary" />
+    },
+    {
+      title: "Problem Solving",
+      difficulty: "Medium",
+      topics: ["Critical Thinking", "Decision Making", "Innovation"],
+      questions: 8,
+      time: "25 mins",
+      icon: <Lightbulb className="h-12 w-12 text-primary" />
+    },
+    {
+      title: "Culture Fit",
+      difficulty: "Easy",
+      topics: ["Company Values", "Work Style", "Career Goals"],
+      questions: 12,
+      time: "35 mins",
+      icon: <Heart className="h-12 w-12 text-primary" />
+    }
+  ];
+  
+  const caseTopics = [
+    {
+      title: "Market Entry Strategy",
+      difficulty: "Hard",
+      topics: ["Market Analysis", "Competitive Landscape", "Cost Analysis"],
+      questions: 5,
+      time: "45 mins",
+      icon: <BookOpen className="h-12 w-12 text-primary" />
+    },
+    {
+      title: "Product Launch",
+      difficulty: "Medium",
+      topics: ["Market Sizing", "Pricing Strategy", "Go-to-Market"],
+      questions: 7,
+      time: "40 mins",
+      icon: <Lightbulb className="h-12 w-12 text-primary" />
+    },
+    {
+      title: "Business Operations",
+      difficulty: "Medium",
+      topics: ["Process Optimization", "Cost Reduction", "Efficiency Analysis"],
+      questions: 6,
+      time: "35 mins",
+      icon: <MessageSquare className="h-12 w-12 text-primary" />
+    }
+  ];
+  
+  const topicsByType = {
+    "technical": technicalTopics,
+    "behavioral": behavioralTopics,
+    "case": caseTopics
+  };
+
   return (
     <MainLayout>
-      <div className="space-y-6">
-        <motion.div 
-          className="space-y-4"
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-        >
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-              <Video className="h-5 w-5 text-primary" />
-            </div>
-            <h1 className="text-3xl font-bold tracking-tight">AI Interview Simulator</h1>
+      {!interviewStarted ? (
+        <div className="space-y-8">
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold tracking-tight">AI Interview Practice</h1>
+            <p className="text-muted-foreground">
+              Get real-time feedback on your interview responses with our AI-powered interview simulator.
+            </p>
           </div>
-          <p className="text-muted-foreground">
-            Practice interviews with real-time AI feedback on your responses, body language, and speech patterns.
-          </p>
-        </motion.div>
-        
-        {!interviewStarted ? (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn}>
-              <Card className="mb-6 animated-border overflow-hidden">
-                <CardHeader className="relative">
-                  <div className="absolute top-0 right-0 -mt-6 -mr-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl"></div>
-                  <CardTitle className="text-2xl">Start a Mock Interview</CardTitle>
-                  <CardDescription className="text-base">
-                    Our AI interviewer will ask you questions and provide real-time feedback to help you improve.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="p-6 text-center">
-                    <div className="py-8">
-                      <Tabs defaultValue="general" className="w-full max-w-2xl mx-auto">
-                        <TabsList className="grid w-full grid-cols-3 mb-8">
-                          <TabsTrigger value="general">General</TabsTrigger>
-                          <TabsTrigger value="technical">Technical</TabsTrigger>
-                          <TabsTrigger value="behavioral">Behavioral</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="general" className="space-y-4">
-                          <div className="text-center mb-6">
-                            <h3 className="text-lg font-medium">General Interview</h3>
-                            <p className="text-sm text-muted-foreground">
-                              Common questions suitable for any industry or role
-                            </p>
-                          </div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Tell me about yourself and your background
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Why are you interested in this position?
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              What are your strengths and weaknesses?
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Where do you see yourself in 5 years?
-                            </div>
-                          </div>
-                        </TabsContent>
-                        <TabsContent value="technical" className="space-y-4">
-                          <div className="text-center mb-6">
-                            <h3 className="text-lg font-medium">Technical Interview</h3>
-                            <p className="text-sm text-muted-foreground">
-                              Role-specific technical questions for various industries
-                            </p>
-                          </div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Explain a complex technical concept in simple terms
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Describe a technical challenge you overcame
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              How do you stay updated with industry trends?
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Walk through your approach to problem-solving
-                            </div>
-                          </div>
-                        </TabsContent>
-                        <TabsContent value="behavioral" className="space-y-4">
-                          <div className="text-center mb-6">
-                            <h3 className="text-lg font-medium">Behavioral Interview</h3>
-                            <p className="text-sm text-muted-foreground">
-                              Questions about past behavior and situational responses
-                            </p>
-                          </div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Tell me about a time you worked under pressure
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Describe a conflict you had with a team member
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              Give an example of a goal you achieved
-                            </div>
-                            <div className="p-4 bg-primary/5 rounded-lg text-sm">
-                              How have you handled failure in the past?
-                            </div>
-                          </div>
-                        </TabsContent>
-                      </Tabs>
-                    </div>
-                    
-                    <motion.button 
-                      className="relative bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-lg font-medium text-lg shadow-lg group overflow-hidden"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setInterviewStarted(true)}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary-foreground/20 to-primary/0 shimmer"></div>
-                      <span className="relative flex items-center gap-2">
-                        <Video className="h-5 w-5" />
-                        Start Interview Session
-                      </span>
-                    </motion.button>
-                    <p className="mt-4 text-sm text-muted-foreground">
-                      Get feedback on your speech, tone, and expressions during the interview.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeIn} className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-              {[
-                {
-                  icon: <Mic className="h-10 w-10 text-indigo-500" />,
-                  title: "Speech Analysis",
-                  description: "AI evaluates your speaking pace, clarity, filler words, and technical vocabulary."
-                },
-                {
-                  icon: <Smile className="h-10 w-10 text-pink-500" />,
-                  title: "Emotion Detection",
-                  description: "Our emotion AI reads facial expressions and analyzes confidence levels in real-time."
-                },
-                {
-                  icon: <MessageSquare className="h-10 w-10 text-cyan-500" />,
-                  title: "Answer Quality",
-                  description: "Get detailed feedback on the structure, relevance, and impact of your responses."
-                }
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className="animated-border overflow-hidden dark:bg-black/40 bg-white shadow-lg rounded-lg p-6"
-                  variants={fadeIn}
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                >
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </div>
-                </motion.div>
+          
+          <Tabs defaultValue="technical" className="w-full">
+            <TabsList className="mb-6 w-full sm:w-auto grid grid-cols-3 gap-1">
+              {interviewTypes.map(type => (
+                <TabsTrigger key={type.id} value={type.id} className="flex items-center gap-2">
+                  {type.icon}
+                  {type.name}
+                </TabsTrigger>
               ))}
-            </motion.div>
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-black/90 relative">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                    <Video className="h-16 w-16 mb-4 opacity-20" />
-                    <p className="text-xl opacity-60">Camera feed placeholder</p>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Button size="icon" variant="secondary" className="rounded-full w-12 h-12 bg-black/50 hover:bg-black/70 border-none">
-                        <Mic className="h-5 w-5" />
-                      </Button>
-                      <Button size="icon" variant="secondary" className="rounded-full w-12 h-12 bg-black/50 hover:bg-black/70 border-none">
-                        <Video className="h-5 w-5" />
-                      </Button>
-                    </div>
-                    
-                    <div className="flex items-center gap-3">
-                      <div className="px-3 py-1 rounded-full bg-black/50 text-white/80 flex items-center gap-2 text-sm">
-                        <Clock className="h-4 w-4" />
-                        <span>04:23</span>
+            </TabsList>
+            
+            {interviewTypes.map(type => (
+              <TabsContent key={type.id} value={type.id} className="space-y-6">
+                <div className="bg-primary/5 p-6 rounded-lg mb-8">
+                  <h2 className="text-xl font-semibold mb-2">{type.name} Practice</h2>
+                  <p className="text-muted-foreground mb-4">{type.description}</p>
+                  <Button className="gap-2" onClick={handleStartInterview}>
+                    <Video size={16} />
+                    Start Interview Session
+                  </Button>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {topicsByType[type.id].map((topic, index) => (
+                    <Card key={index} className="border border-border hover:border-primary/50 transition-all hover:-translate-y-1 duration-300">
+                      <CardHeader>
+                        <div className="flex justify-between items-start">
+                          <div className="bg-primary/10 p-3 rounded-md">
+                            {topic.icon}
+                          </div>
+                          <div className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                            {topic.difficulty}
+                          </div>
+                        </div>
+                        <CardTitle className="mt-4">{topic.title}</CardTitle>
+                        <CardDescription>
+                          {topic.questions} questions • {topic.time}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {topic.topics.map((t, i) => (
+                            <span key={i} className="text-xs px-2 py-1 bg-card text-muted-foreground rounded-full">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </CardContent>
+                      <CardFooter>
+                        <Button className="w-full gap-2" onClick={handleStartInterview}>
+                          <Play size={16} />
+                          Practice Now
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+          
+          <div className="bg-gradient-to-br from-accent/10 to-primary/10 p-8 rounded-lg mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">How Our AI Interview Works</h2>
+                <ul className="space-y-4">
+                  {[
+                    {
+                      icon: <Bot size={20} className="text-primary" />,
+                      title: "AI-Powered Interviewer",
+                      description: "Our AI asks relevant questions based on the role you're targeting."
+                    },
+                    {
+                      icon: <Mic size={20} className="text-primary" />,
+                      title: "Real-time Analysis",
+                      description: "Get feedback on your communication style, content, and delivery."
+                    },
+                    {
+                      icon: <Video size={20} className="text-primary" />,
+                      title: "Video Assessment",
+                      description: "Optional video analysis provides insights on body language and facial expressions."
+                    },
+                    {
+                      icon: <CheckCircle size={20} className="text-primary" />,
+                      title: "Personalized Feedback",
+                      description: "Receive detailed reports with specific areas for improvement."
+                    }
+                  ].map((feature, index) => (
+                    <li key={index} className="flex gap-3">
+                      <div className="mt-1">{feature.icon}</div>
+                      <div>
+                        <h3 className="font-medium">{feature.title}</h3>
+                        <p className="text-sm text-muted-foreground">{feature.description}</p>
                       </div>
-                      <Button size="icon" variant="destructive" className="rounded-full w-12 h-12">
-                        <Pause className="h-5 w-5" />
-                      </Button>
-                    </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-lg overflow-hidden border border-primary/20">
+                <img 
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                  alt="AI Interview" 
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-6">
+          <Card className="bg-card border-primary/20">
+            <CardHeader>
+              <div className="flex justify-between items-center">
+                <CardTitle>Interview Session</CardTitle>
+                <Button variant="outline" onClick={() => setInterviewStarted(false)}>
+                  End Session
+                </Button>
+              </div>
+              <CardDescription>
+                Technical Interview - Data Structures & Algorithms
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-8">
+              <div className="aspect-video w-full bg-black/90 rounded-lg flex items-center justify-center relative">
+                <div className="text-white text-center">
+                  <Video className="h-16 w-16 mx-auto mb-4 opacity-30" />
+                  <p className="text-lg font-medium">Camera Preview</p>
+                  <p className="text-sm text-white/60">Your camera stream will appear here</p>
+                </div>
+                <div className="absolute bottom-4 right-4 flex gap-2">
+                  <Button size="sm" variant="outline" className="bg-black/50 border-white/20 text-white">
+                    <Mic size={16} />
+                  </Button>
+                  <Button size="sm" variant="outline" className="bg-black/50 border-white/20 text-white">
+                    <Video size={16} />
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="border border-border rounded-lg p-4">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Bot size={16} className="text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-medium mb-1">AI Interviewer</div>
+                    <p>Could you implement a function to find the longest substring without repeating characters?</p>
                   </div>
                 </div>
                 
-                <div className="p-4 border-t">
-                  <div className="mb-4">
-                    <h3 className="text-lg font-medium mb-2">Current Question</h3>
-                    <p className="p-3 rounded-lg bg-primary/5 text-foreground">
-                      Tell me about a challenging project you worked on and how you overcame obstacles.
-                    </p>
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <User size={16} className="text-accent" />
                   </div>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <Button variant="outline" size="sm" className="gap-1">
-                      <RotateCcw className="h-3 w-3" />
-                      <span>Repeat</span>
-                    </Button>
-                    <Button variant="outline" size="sm" className="gap-1">
-                      <Play className="h-3 w-3" />
-                      <span>Skip</span>
-                    </Button>
-                    <Button variant="outline" size="sm" className="gap-1">
-                      <FileText className="h-3 w-3" />
-                      <span>Sample Answer</span>
-                    </Button>
+                  <div>
+                    <div className="font-medium mb-1">You</div>
+                    <p className="text-muted-foreground">Your response will appear here...</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <Card className="lg:col-span-2">
-                <CardHeader>
-                  <CardTitle>Real-time Feedback</CardTitle>
-                  <CardDescription>
-                    AI analysis of your speech patterns, tone, and expressions
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <h4 className="text-sm font-medium flex items-center gap-2">
-                        <Mic className="h-4 w-4" /> 
-                        Speech Clarity
-                      </h4>
-                      <span className="text-sm font-medium text-green-500">Good</span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 w-[75%]"></div>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      Your speech is clear and easy to understand. Good pacing.
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <h4 className="text-sm font-medium flex items-center gap-2">
-                        <Smile className="h-4 w-4" /> 
-                        Confidence
-                      </h4>
-                      <span className="text-sm font-medium text-amber-500">Average</span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div className="h-full bg-amber-500 w-[50%]"></div>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      Try to maintain more eye contact and use fewer filler words.
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <h4 className="text-sm font-medium flex items-center gap-2">
-                        <MessageSquare className="h-4 w-4" /> 
-                        Answer Quality
-                      </h4>
-                      <span className="text-sm font-medium text-blue-500">Very Good</span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 w-[85%]"></div>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      Good structure with clear examples. Consider adding more specific results.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+              </div>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Interview Progress</CardTitle>
-                  <CardDescription>
-                    Track your performance through the interview
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <div className="text-sm font-medium">Question 3 of 10</div>
-                      <div className="text-xs text-muted-foreground">General Interview</div>
-                    </div>
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                      30%
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-primary/5 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <Code size={16} /> Code Editor
+                  </h3>
+                  <div className="bg-card p-4 rounded border border-border font-mono text-sm">
+                    <pre>{`function lengthOfLongestSubstring(s) {
+  // Your code here
+}`}</pre>
                   </div>
-                  
-                  <div className="space-y-3">
-                    {[
-                      { question: "Tell me about yourself", status: "completed", score: "85%" },
-                      { question: "Why this position?", status: "completed", score: "78%" },
-                      { question: "Challenging project", status: "current", score: "..." },
-                      { question: "Strengths & weaknesses", status: "upcoming", score: "..." },
-                      { question: "Team conflict situation", status: "upcoming", score: "..." },
-                    ].map((item, index) => (
-                      <div 
-                        key={index} 
-                        className={`p-3 rounded-lg flex justify-between items-center ${
-                          item.status === 'current' 
-                            ? 'bg-primary/10 border border-primary/30' 
-                            : item.status === 'completed' 
-                              ? 'bg-secondary/50'
-                              : 'bg-secondary/30'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          {item.status === 'completed' && <CheckCircle className="h-4 w-4 text-green-500" />}
-                          {item.status === 'current' && <Play className="h-4 w-4 text-primary" />}
-                          <span className={`text-sm ${item.status === 'upcoming' ? 'text-muted-foreground' : ''}`}>
-                            {item.question}
-                          </span>
-                        </div>
-                        <span className="text-sm font-medium">{item.score}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-            
-            <div className="flex justify-between">
-              <Button variant="outline" onClick={() => setInterviewStarted(false)}>
-                End Interview
-              </Button>
-              <Button className="gap-2">
-                <span>View Full Report</span>
-                <BarChart className="h-4 w-4" />
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </div>
+                </div>
+                
+                <div className="bg-primary/5 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <Lightbulb size={16} /> Tips
+                  </h3>
+                  <ul className="space-y-2 text-sm">
+                    <li>Consider using a sliding window approach</li>
+                    <li>You'll need to track characters you've seen</li>
+                    <li>Think about how to handle repeated characters</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full">Submit Response</Button>
+            </CardFooter>
+          </Card>
+        </div>
+      )}
     </MainLayout>
   );
 };
