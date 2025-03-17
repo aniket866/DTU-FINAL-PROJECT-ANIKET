@@ -1,5 +1,6 @@
-# 🚀 CareerHubAI - AI-Powered Career Growth Platform
 
+# 🚀 CareerHubAI - AI-Powered Career Growth Platform
+[screen-capture (21).webm](https://github.com/user-attachments/assets/06f86f75-24bb-4858-81c3-dcf6a1adfa1e)
 
 ## 📋 Overview
 
