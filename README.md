@@ -1,6 +1,5 @@
 # 🚀 CareerHubAI - AI-Powered Career Growth Platform
 
-![CareerHubAI Platform](https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&q=80)
 
 ## 📋 Overview
 
