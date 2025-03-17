@@ -1,3 +1,4 @@
+##PROJECT LINK:[ dtu-final-project-aniket.vercel.app](https://dtu-final-project-aniket.vercel.app/)
 
 # 🚀 CareerHubAI - AI-Powered Career Growth Platform
 [screen-capture (21).webm](https://github.com/user-attachments/assets/06f86f75-24bb-4858-81c3-dcf6a1adfa1e)
@@ -47,13 +48,46 @@ npm run dev
 ## 📱 Screenshots
 
 ### Home Page
-![Home Page](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80)
+![Screenshot (837)](https://github.com/user-attachments/assets/1d4719de-6d01-420a-9c78-e5308c025cc2)
 
-### Career Paths
-![Career Paths](https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80)
+### Many features
 
-### AI Interview Practice
-![Interview Practice](https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=1200&q=80)
+![Screenshot (844)](https://github.com/user-attachments/assets/4c287fb3-160d-473f-8941-971561a5eff2)
+
+#-----------------------------------------------------------------------------------------------------------
+
+
+![Screenshot (838)](https://github.com/user-attachments/assets/f77070b6-62b8-45e8-afe2-5b3e6bf272ff)
+
+#-----------------------------------------------------------------------------------------------------------
+
+
+![Screenshot (839)](https://github.com/user-attachments/assets/1a1fbd22-46e7-4e2a-90d6-b44b08168508)
+
+#-----------------------------------------------------------------------------------------------------------
+
+
+![Screenshot (840)](https://github.com/user-attachments/assets/1d094514-f0af-4fb0-bc57-63c1e1130379)
+
+#-----------------------------------------------------------------------------------------------------------
+
+
+![Screenshot (841)](https://github.com/user-attachments/assets/a4eea83d-98b8-478f-a6ae-0f35cf746aae)
+
+#-----------------------------------------------------------------------------------------------------------
+
+
+![Screenshot (842)](https://github.com/user-attachments/assets/b0c24b69-6cd4-4b4c-b822-c8f3d19a54eb)
+
+
+#-----------------------------------------------------------------------------------------------------------
+
+
+![Screenshot (843)](https://github.com/user-attachments/assets/509d4ab8-9b6e-42d2-95f3-7ef4bed19504)
+
+#-----------------------------------------------------------------------------------------------------------
+
+
 
 ## 🚀 Deployment
 
