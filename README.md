@@ -1,4 +1,4 @@
-##PROJECT LINK:[ dtu-final-project-aniket.vercel.app](https://dtu-final-project-aniket.vercel.app/)
+#PROJECT LINK:[ dtu-final-project-aniket.vercel.app](https://dtu-final-project-aniket.vercel.app/)
 
 # 🚀 CareerHubAI - AI-Powered Career Growth Platform
 [screen-capture (21).webm](https://github.com/user-attachments/assets/06f86f75-24bb-4858-81c3-dcf6a1adfa1e)
@@ -94,6 +94,7 @@ npm run dev
 To build for production:
 
 ```sh
+npm install
 npm run build
 ```
 
@@ -102,4 +103,6 @@ The build artifacts will be stored in the `dist/` directory, ready to be deploye
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+#for any queries and to contact: iamaniketkumarmaner@gmail.com
 
